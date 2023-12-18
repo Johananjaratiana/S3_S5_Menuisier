@@ -1,0 +1,21 @@
+#exampleModalLabel{
+    color: #ffc75b;
+    font-size: 15pt;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+
+.modal-content{
+    opacity: 0.9;
+    background-color: #000000fc;
+}
+.close{
+    color: white;
+}
+.close:hover{
+    color: greenyellow;
+}
+.modal-content{
+    color: white;
+}
