@@ -1,84 +1,73 @@
 package models;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import services.DatabaseConnection;
+import java.sql.*;
+import johan.dao.annotation.*;
+import johan.dao.Johan_DaoSQL;
 
-public class Unite extends Table{
-    private Integer id;
-    private String name;
-    
-    public Unite(){}
-    
-    public Unite(ResultSet rs){
-        this.construct(rs);
-    }
-    
-    public Unite(HttpServletRequest request){
-        this.formConstruct(request);
-    }
+public class Unite {
+  	@J_Column(name = "id")
+	private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+	@J_Column(name = "nom")
+	private String nom;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
-    public void setId(Object id){
-        this.id = Integer.valueOf(id.toString());
-    }
+	@J_Column(name = "status")
+	private Integer status;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setName(Object name){
-        this.name = name.toString();
-    }
-    
-    public static void getContent(){
-        try {
-            Class classe = Class.forName("models.Unite");
-            //getMainContent(classe);
-            String canva  = generate_Form_Canva(classe, new String[0], new String[]{"id"}); 
-            System.out.println("content file created");            
-            getMainContent(classe);
-            System.out.println("main file created");            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /*public static List<Unite> selectAll() throws SQLException {
-        List<Unite> unites = new ArrayList<>();
 
-        try (Connection connection = DatabaseConnection.GetConnection()) {
-            String sql = "SELECT * FROM unite"; // Remplacez 'unite' par le nom de votre table
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+  	public Integer getId() { return id; }
+	public String getNom() { return nom; }
+	public Integer getStatus() { return status; }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+	public void setId(Integer id) { this.id = id; }
+	public void setNom(String nom) { this.nom = nom; }
+	public void setStatus(Integer status) { this.status = status; }
 
-            while (resultSet.next()) {
-                Unite unite = new Unite();
-                unite.setId(resultSet.getInt("id"));
-                unite.setName(resultSet.getString("name"));
+    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
+    		objectDao.save(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-                unites.add(unite);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-   
+  	public void Update(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
+    		objectDao.UpdateById(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-        return unites;
-    }*/
+  	public void DeleteById(Object id, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
+    		objectDao.delete(id, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public Unite GetById(Object id, Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
+    		return objectDao.SelectById(id, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public List<Unite> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
+    		return objectDao.SelectAll("", isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
 }

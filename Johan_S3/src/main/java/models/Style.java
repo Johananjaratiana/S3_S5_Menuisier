@@ -1,86 +1,73 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-//import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
-import services.DatabaseConnection;
-import java.util.*;
+import java.util.List;
+import java.sql.*;
+import johan.dao.annotation.*;
+import johan.dao.Johan_DaoSQL;
 
-/**
- *
- * @author hp
- */
+public class Style {
+  	@J_Column(name = "id")
+	private Integer id;
 
-public class Style extends Table {
-    Integer id;
-    String nom;
-    
-     public void setId(Object id){
-        this.id = Integer.valueOf(id.toString());
-    }
-    public void setNom(Object nom){
-        this.nom = nom.toString();
-    }
-    
-    public Integer getId(){
-        return this.id;
-    }
-    
-    public String getNom(){
-        return this.nom;
-    }
-    
-    public Style(){
-        
-    }
-    public Style(ResultSet rs){
-        this.construct(rs);
-    }
-    public Style(HttpServletRequest request){
-        this.setNom(request.getParameter("nom"));
-    }
-    
-    public static void getContent(){
-        try {
-            Class classe = Class.forName("models.Style");
-            //getMainContent(classe);
-            String canva  = generate_Form_Canva(classe, new String[0], new String[]{"id"}); 
-            getMainContent(classe);
+	@J_Column(name = "nom")
+	private String nom;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /*public static List<Style> selectAll() throws SQLException {
-        List<Style> styles = new ArrayList<>();
+	@J_Column(name = "status")
+	private Integer status;
 
-        try (Connection connection = DatabaseConnection.GetConnection()) {
-            String sql = "SELECT * FROM style"; // Remplacez 'style' par le nom de votre table
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Style style = new Style();
-                style.setId(resultSet.getInt("id"));
-                style.setNom(resultSet.getString("nom"));
+  	public Integer getId() { return id; }
+	public String getNom() { return nom; }
+	public Integer getStatus() { return status; }
 
-                styles.add(style);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            
-        }
+	public void setId(Integer id) { this.id = id; }
+	public void setNom(String nom) { this.nom = nom; }
+	public void setStatus(Integer status) { this.status = status; }
 
-        return styles;
-    }*/
+    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Style> objectDao = new Johan_DaoSQL<Style>(Style.class);
+    		objectDao.save(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public void Update(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Style> objectDao = new Johan_DaoSQL<Style>(Style.class);
+    		objectDao.UpdateById(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public void DeleteById(Object id, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Style> objectDao = new Johan_DaoSQL<Style>(Style.class);
+    		objectDao.delete(id, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public Style GetById(Object id, Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Style> objectDao = new Johan_DaoSQL<Style>(Style.class);
+    		return objectDao.SelectById(id, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public List<Style> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Style> objectDao = new Johan_DaoSQL<Style>(Style.class);
+    		return objectDao.SelectAll("", isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
 }

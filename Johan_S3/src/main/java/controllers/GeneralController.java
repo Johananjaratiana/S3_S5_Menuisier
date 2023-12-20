@@ -1,18 +1,17 @@
 package controllers;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import models.*;
+
+import johan.servlet.*;
+import realmodels.*;
+import java.sql.*;
+import services.DatabaseConnection;
 
 @WebServlet(name = "GeneralController", urlPatterns = {"/Controller"})
 public class GeneralController extends HttpServlet {
@@ -31,20 +30,9 @@ public class GeneralController extends HttpServlet {
         /* Check if it has been connected */
         String action = request.getParameter("action");
         
-        try{
-            
-            System.out.println(action);
-            String[] parts = action.split("_insert");
-            System.out.println("length="+parts.length);
-            if(parts.length==1){
-                Class concerned = Class.forName("models."+Util.capitalize(action));
-                System.out.println("classe name: "+concerned.getSimpleName());
-                Method createjsp = concerned.getMethod("getContent", (Class[]) null);
-                createjsp.invoke(null, (Object[]) null);
-                request.getRequestDispatcher(action+".jsp").forward(request, response);
-            }
-            
-            /*switch(action){
+        try (Connection connection = DatabaseConnection.GetConnection()){
+
+            switch(action){
                     
                 case "log-out" :
                     HttpSession log_out_session = request.getSession(false);
@@ -63,67 +51,140 @@ public class GeneralController extends HttpServlet {
                 case "project" :
                     request.getRequestDispatcher("project.jsp").forward(request, response);
                     break;
+
+                case "crud" :
+                    request.getRequestDispatcher("crud.jsp").forward(request, response);
+                    break;
                     
                 case "list":
                     request.getRequestDispatcher("pagination.jsp").forward(request, response);
                     break;
-                    
-                case "categorie":
-                    request.getRequestDispatcher("categorie.jsp").forward(request, response);
-                    break;
-                    
-                case "style_insert":
-                    request.getRequestDispatcher("style.jsp").forward(request, response);
-                    break;
-                    
-                case "style_insert2":
-                    Style style = new Style(request);
-                    Table.insert(style);
-                    request.getRequestDispatcher("style.jsp").forward(request, response);
-                    break;
-                    
-                case "categorie_insert":
-                    Categorie cat = new Categorie(request);
-                    Table.insert(cat);
-                    request.getRequestDispatcher("categorie.jsp").forward(request, response);
-                    break;                    
-
-                case "materiel":
-                    List<Unite> unit = Unite.selectAll();
-                    request.setAttribute("unites", unit);
-                    request.getRequestDispatcher("outils.jsp").forward(request, response);
-                    break; 
-                    
-                case "style_materiel":
-                    Vector<Table> styles = Table.fetch("Style", null);
-                    Vector<Table> materiels = Table.fetch("Materiel", null);
-                    System.out.println(styles.size());
-                    request.setAttribute("styles", styles);
-                    request.setAttribute("materiels", materiels);
-                    request.getRequestDispatcher("styleMateriels.jsp").forward(request, response);
-                    break; 
                 
-                case "mat_insert":
-                    Materiel catt = new Materiel(request);
-                    catt.insert();
-                    request.getRequestDispatcher("project.jsp").forward(request, response);
+                // ----------------------- CATEGORIE 
+                case "crud-categorie":
+                    Categorie.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("categorie.jsp").forward(request, response);
                     break;
-                case "stymat_insert":
-                    StyleMateriel stmat = new StyleMateriel(request);
-                    Table.insert(stmat);
-                    request.getRequestDispatcher("project.jsp").forward(request, response);
+                
+                case "categorie-insert":
+                    Categorie cat = Johan_Servlet.constructByFormView(Categorie.class, request);
+                    cat.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-categorie");
+                    break;
+
+                // ----------------------- STYLE 
+                case "crud-style":
+                    Style.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("style.jsp").forward(request, response);
+                    break;
+                
+                case "style-insert":
+                    Style style = Johan_Servlet.constructByFormView(Style.class, request);
+                    style.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-style");
+                    break;
+
+                // ----------------------- STYLE 
+                case "crud-unite":
+                    Unite.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("unite.jsp").forward(request, response);
+                    break;
+                
+                case "unite-insert":
+                    Unite unite = Johan_Servlet.constructByFormView(Unite.class, request);
+                    unite.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-unite");
+                    break;
+
+                // ----------------------- VOLUME 
+                case "crud-volume":
+                    Volume.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("volume.jsp").forward(request, response);
+                    break;
+                
+                case "volume-insert":
+                    Volume volume = new Volume(request);
+                    volume.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-volume");
+                    break;
+
+                // ----------------------- MATERIEL 
+                case "crud-materiel":
+                    Materiel.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("materiel.jsp").forward(request, response);
+                    break;
+                
+                case "materiel-insert":
+                    Materiel materiel = new Materiel(request);
+                    materiel.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-materiel");
+                    break;
+
+                // ----------------------- STYLE MATERIEL 
+                case "crud-style-materiel":
+                    Style_materiel.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("style-materiel.jsp").forward(request, response);
+                    break;
+                
+                case "style-materiel-insert":
+                    Style_materiel style_materiel = new Style_materiel(request);
+                    style_materiel.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-style-materiel");
+                    break;
+                
+                // ----------------------- STYLE PRODUIT
+                case "crud-produit":
+                    Produit.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("produit.jsp").forward(request, response);
+                    break;
+                
+                case "produit-insert":
+                    Produit produit = new Produit(request);
+                    produit.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-produit");
+                    break;
+
+                // ----------------------- STYLE REFERENCE 
+                case "crud-reference":
+                    Reference.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("reference.jsp").forward(request, response);
+                    break;
+                
+                case "reference-insert":
+                    Reference reference = new Reference(request);
+                    reference.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-reference");
+                    break;
+
+                // ----------------------- STYLE REFERENCE 
+                case "crud-quantite-outils":
+                    Quantite_outils.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("quantite-outils.jsp").forward(request, response);
+                    break;
+                
+                case "quantite-outils-insert":
+                    Quantite_outils quantite_outils = new Quantite_outils(request);
+                    quantite_outils.save(true, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-quantite-outils");
+                    break;
+
+                // ----------------------- STYLE FINAL 
+                case "final-request":
+                    FormuleMateriel.setDefaultDataToView(connection, request);
+                    Materiel.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("final.jsp").forward(request, response);
                     break;
                     
                 default:
                     throw new Exception("No action to be answered");
-            }*/
+            }
         }
         catch(Exception ex)
         {
             ex.printStackTrace();
             //response.sendError(0, ex.getMessage());
-            System.out.println("catch: "+action);
-            request.getRequestDispatcher(action+".jsp").forward(request, response);
+            // System.out.println("catch: "+action);
+            // request.getRequestDispatcher(action+".jsp").forward(request, response);
         }
     }
 

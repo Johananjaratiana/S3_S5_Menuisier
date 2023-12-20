@@ -1,162 +1,78 @@
 package models;
+
+import java.util.List;
 import java.sql.*;
-import java.util.*;
-import javax.servlet.http.HttpServletRequest;
-import services.*;
-public class Materiel extends Table{
-    Integer id;
-    String nom;
-    String caracteristique;
-    Integer id_unite;
+import johan.dao.annotation.*;
+import johan.dao.Johan_DaoSQL;
 
-    
-    /*public void insert() throws Exception {
-    String query = "INSERT INTO materiel (nom, caracteristique, id_unite) VALUES (?, ?, ?)";
+public class Materiel {
+  	@J_Column(name = "id")
+	private Integer id;
 
-    try (Connection connection = DatabaseConnection.GetConnection()) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, nom);
-            preparedStatement.setString(2, caracteristique);
-            preparedStatement.setInt(3, id_unite);
+	@J_Column(name = "nom")
+	private String nom;
 
-            preparedStatement.executeUpdate();
-            System.out.println("Insertion réussie dans la base de données.");
-        }
-    } catch (Exception e) {
-        System.out.println("Erreur lors de l'insertion : " + e.getMessage());
-        throw e;
-    }
-    }*/
-    
+	@J_Column(name = "id_unite")
+	private Integer id_unite;
+
+	@J_Column(name = "status")
+	private Integer status;
 
 
-    public Materiel(){
-        
-    }
-    public Materiel(ResultSet rs){
-        this.construct(rs);
-    }
-    
-    public Materiel(HttpServletRequest request){
-        this.formConstruct(request);
-    }
-    
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  	public Integer getId() { return id; }
+	public String getNom() { return nom; }
+	public Integer getId_unite() { return id_unite; }
+	public Integer getStatus() { return status; }
 
-    public String getNom() {
-        return nom;
-    }
+	public void setId(Integer id) { this.id = id; }
+	public void setNom(String nom) { this.nom = nom; }
+	public void setId_unite(Integer id_unite) { this.id_unite = id_unite; }
+	public void setStatus(Integer status) { this.status = status; }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Materiel> objectDao = new Johan_DaoSQL<Materiel>(Materiel.class);
+    		objectDao.save(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-    public String getCaracteristique() {
-        return caracteristique;
-    }
+  	public void Update(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Materiel> objectDao = new Johan_DaoSQL<Materiel>(Materiel.class);
+    		objectDao.UpdateById(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-    public void setCaracteristique(String caracteristique) {
-        this.caracteristique = caracteristique;
-    }
+  	public void DeleteById(Object id, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Materiel> objectDao = new Johan_DaoSQL<Materiel>(Materiel.class);
+    		objectDao.delete(id, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-    public Integer getIdUnite() {
-        return id_unite;
-    }
+  	public Materiel GetById(Object id, Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Materiel> objectDao = new Johan_DaoSQL<Materiel>(Materiel.class);
+    		return objectDao.SelectById(id, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-    public void setIdUnite(Integer id_unite) {
-        this.id_unite = id_unite;
-    }
-    
-    public void setId(Object id){
-        this.id = Integer.valueOf(id.toString());
-    }
-    public void setNom(Object nom){
-        this.nom = nom.toString();
-    }
-    public void setCaracteristique(Object caract){
-        this.caracteristique = caract.toString();
-    }
-    public void setId_unite(Object caract){
-        this.id_unite = Integer.valueOf(caract.toString());
-    }
-     /*public static List<Materiel> selectAll() throws SQLException {
-        List<Materiel> materiels = new ArrayList<>();
+  	public List<Materiel> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Materiel> objectDao = new Johan_DaoSQL<Materiel>(Materiel.class);
+    		return objectDao.SelectAll("", isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-        try (Connection connection = DatabaseConnection.GetConnection()) {
-            String sql = "SELECT * FROM materiel"; // Remplacez 'materiel' par le nom de votre table
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Materiel materiel = new Materiel();
-                materiel.setId(resultSet.getInt("id"));
-                materiel.setNom(resultSet.getString("nom"));
-                materiel.setCaracteristique(resultSet.getString("caracteristique"));
-                materiel.setIdUnite(resultSet.getInt("id_unite"));
-
-                materiels.add(materiel);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            
-        }
-
-        return materiels;
-    }*/
-    public static void getContent(){
-        try {
-            Class classe = Class.forName("models.Materiel");
-            //getMainContent(classe);
-            String canva  = generate_Form_Canva(classe, new String[0], new String[]{"id"});
-            System.out.println("content file created");            
-            getMainContent(classe);
-            System.out.println("main file created");            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-     public static List<Materiel> selectAllByStyle(Integer id_style) throws SQLException {
-        List<Materiel> materiels = new ArrayList<>();
-
-        try (Connection connection = DatabaseConnection.GetConnection()) {
-            String sql = "SELECT m.* \n" +
-            "    from stylemateriel sm\n" +
-            "     join materiel m on sm.id_materiel=m.id\n" +
-            "    where id_style=?\n" +
-            "    and status = 10"; // Remplacez 'materiel' par le nom de votre table
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id_style);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Materiel materiel = new Materiel();
-                materiel.setId(resultSet.getInt("id"));
-                materiel.setNom(resultSet.getString("nom"));
-                materiel.setCaracteristique(resultSet.getString("caracteristique"));
-                materiel.setIdUnite(resultSet.getInt("id_unite"));
-
-                materiels.add(materiel);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            
-        }
-
-        return materiels;
-    }
-     /*SELECT m.* 
-    from stylemateriel sm
-     join materiel m on sm.id_materiel=m.id
-    where id_style=1
-    and status = 10;   */
-    
 }

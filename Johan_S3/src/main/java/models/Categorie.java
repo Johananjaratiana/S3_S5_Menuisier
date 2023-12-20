@@ -1,63 +1,73 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
-import services.DatabaseConnection;
+import java.util.List;
+import java.sql.*;
+import johan.dao.annotation.*;
+import johan.dao.Johan_DaoSQL;
 
-/**
- *
- * @author hp
- */
-public class Categorie extends Table {
-    Integer id;
-    String nom;
-    
-     public void setId(Object id){
-        this.id = Integer.valueOf(id.toString());
-    }
-    public void setNom(Object nom){
-        this.nom = nom.toString();
-    }
-    
-    public Integer getId(){
-        return this.id;
-    }
-    
-    public String getNom(){
-        return this.nom;
-    }
-    
-    public Categorie(){
-        
-    }
-    public Categorie(ResultSet rs){
-        this.construct(rs);
-    }
-    public Categorie(HttpServletRequest request){
-        this.formConstruct(request);
-    }
-    public static void getContent(){
-        try {
-            Class classe = Class.forName("models.Categorie");
-            //getMainContent(classe);
-            String canva  = generate_Form_Canva(classe, new String[0], new String[]{"id"}); 
-            System.out.println("content file created");
+public class Categorie {
+  	@J_Column(name = "id")
+	private Integer id;
 
-            getMainContent(classe);
-            System.out.println("main file created");
+	@J_Column(name = "nom")
+	private String nom;
+
+	@J_Column(name = "status")
+	private Integer status;
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
+  	public Integer getId() { return id; }
+	public String getNom() { return nom; }
+	public Integer getStatus() { return status; }
+
+	public void setId(Integer id) { this.id = id; }
+	public void setNom(String nom) { this.nom = nom; }
+	public void setStatus(Integer status) { this.status = status; }
+
+    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
+    		objectDao.save(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public void Update(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
+    		objectDao.UpdateById(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public void DeleteById(Object id, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
+    		objectDao.delete(id, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public Categorie GetById(Object id, Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
+    		return objectDao.SelectById(id, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
+
+  	public List<Categorie> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
+    		return objectDao.SelectAll("", isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
 }

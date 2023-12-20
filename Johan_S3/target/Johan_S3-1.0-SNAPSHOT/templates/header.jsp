@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="models.Personne" %>
+<%@ page import="realmodels.Personne" %>
 <%
     Personne utilisateur = (Personne) request.getAttribute("utilisateur");
 %>

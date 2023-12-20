@@ -1,168 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
-import services.DatabaseConnection;
+import java.util.List;
+import java.sql.*;
+import johan.dao.annotation.*;
+import johan.dao.Johan_DaoSQL;
 
-/**
- *
- * @author johan
- */
-public class Personne extends Table {
-    Integer id;
-    String nom;
-    String prenom;
-    Date dtn;
-    String email;
-    String mdp;
+public class Personne {
+  	@J_Column(name = "id")
+	private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+	@J_Column(name = "nom")
+	private String nom;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public void setId(Object id){
-        this.id =Integer.valueOf(id.toString());
-    }
+	@J_Column(name = "prenom")
+	private String prenom;
 
-    public String getNom() {
-        return nom;
-    }
+	@J_Column(name = "dtn")
+	private java.sql.Date dtn;
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-    public void setNom(Object nom){
-        this.nom = nom.toString();
-    }
+	@J_Column(name = "email")
+	private String email;
 
-    public String getPrenom() {
-        return prenom;
-    }
+	@J_Column(name = "mdp")
+	private String mdp;
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-    public void setPrenom(Object prenom) {
-        this.prenom  = prenom.toString();
-    }
 
-    public Date getDtn() {
-        return dtn;
-    }
 
-    public void setDtn(Date dtn) {
-        this.dtn = dtn;
-    }
-    public void setDtn(Object dtn){
-        this.dtn = Date.valueOf(dtn.toString());
-    }
-    public String getEmail() {
-        return email;
-    }
+  	public Integer getId() { return id; }
+	public String getNom() { return nom; }
+	public String getPrenom() { return prenom; }
+	public java.sql.Date getDtn() { return dtn; }
+	public String getEmail() { return email; }
+	public String getMdp() { return mdp; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setEmail(Object email){
-        this.email = email.toString();
-    }
+	public void setId(Integer id) { this.id = id; }
+	public void setNom(String nom) { this.nom = nom; }
+	public void setPrenom(String prenom) { this.prenom = prenom; }
+	public void setDtn(java.sql.Date dtn) { this.dtn = dtn; }
+	public void setEmail(String email) { this.email = email; }
+	public void setMdp(String mdp) { this.mdp = mdp; }
 
-    public String getMdp() {
-        return mdp;
-    }
+    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
+    		objectDao.save(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-    public void setMdp(Object mdp){
-        this.mdp = mdp.toString();
-    }
-    
-    public String getFullName(){
-        return (this.nom + " " + this.prenom);
-    }
-    
-    public Personne(){}
-    
-    public Personne(HttpServletRequest request){
-        this.setNom(request.getParameter("nom"));
-        this.setPrenom(request.getParameter("prenom"));
-        this.setEmail(request.getParameter("email"));
-        this.setDtn(Date.valueOf(request.getParameter("dtn")));
-        this.setMdp(request.getParameter("mdp"));
-    }
-    public Personne(ResultSet rs){
-        super(rs);
-        this.construct(rs);
-    }
-    
-    public static Personne Login(String email , String mdp) throws Exception
-    {
-        Personne personne = null;
-        try {
-            try (Connection connection = DatabaseConnection.GetConnection()) {
-                String sql = "SELECT * FROM personne WHERE email = ? AND mdp = ?";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+  	public void Update(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
+    		objectDao.UpdateById(this, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-                // Set the value for the placeholder
-                preparedStatement.setString(1,email);
-                preparedStatement.setString(2, mdp);
+  	public void DeleteById(Object id, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
+    		objectDao.delete(id, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-                // Execute the query
-                ResultSet resultSet = preparedStatement.executeQuery();
+  	public Personne GetById(Object id, Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
+    		return objectDao.SelectById(id, isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-                // Process the result
-                if (resultSet.next()) {
-                    personne = new Personne();
-                    personne.id = resultSet.getInt("id");
-                    personne.nom = resultSet.getString("nom");
-                    personne.prenom = resultSet.getString("prenom");
-                    personne.email = resultSet.getString("email");
-                    personne.dtn = resultSet.getDate("dtn");
-                }
-            }
-        } catch (SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-        return personne;
-    }
-    
-    public static Personne AjouterUtilisateur(HttpServletRequest request) throws Exception {
-        Personne newPersonne = new Personne(request);
-        try {
-            try (Connection connection = DatabaseConnection.GetConnection()) {
-                String sql =    "INSERT INTO personne (nom, prenom, email, mdp, dtn) VALUES " + 
-                                " (?, ?, ?, ?, ?)";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    // Set the values for the placeholders
-                    preparedStatement.setString(1, newPersonne.nom);
-                    preparedStatement.setString(2, newPersonne.prenom);
-                    preparedStatement.setString(3, newPersonne.email);
-                    preparedStatement.setString(4, newPersonne.mdp);
-                    preparedStatement.setDate(5, newPersonne.dtn);
+  	public List<Personne> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+    	try{
+    		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
+    		return objectDao.SelectAll("", isChildClass, connection);
+    	}catch(Exception ex){
+    		throw new Exception(ex.getMessage());
+    	}
+  	}
 
-                    // Execute the update
-                    preparedStatement.executeUpdate();
-                }
-            }
-            return newPersonne;
-        } catch (SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-    public static Double[] getStat(){
-        Double[] ans = new Double[]{Double.valueOf(15), Double.valueOf(100),Double.valueOf(85)};
-        return ans;
-    }
 }

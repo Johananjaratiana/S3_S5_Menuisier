@@ -1,0 +1,11 @@
+
+.content-wrapper{
+    background : #D5D5D5;
+}
+
+.pagination li {
+    display:inline-block;
+    padding:5px;
+}
+  
+  

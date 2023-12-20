@@ -12,12 +12,13 @@
   <title>Clust. Depl.</title>
   
   <!-- inject:css -->
+  <link rel="stylesheet" href="assets/css/all.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/my-modal.css">
   <link rel="stylesheet" href="assets/css/my-style.css">
   <link rel="stylesheet" href="assets/css/pagination.css">
-  <!--<link rel="stylesheet" href="assets/css/bootstrap.css">-->
+  <link rel="stylesheet" href="assets/css/latest.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="assets/images/logo/image1-1.png" />
 </head>

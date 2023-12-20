@@ -8,26 +8,62 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=style">
-                <span class="menu-title">Style</span>
-                <i class="mdi mdi-home menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=categorie">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-categorie">
                 <span class="menu-title">Categorie</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=materiel">
-                <span class="menu-title">Materiel</span>
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-style">
+                <span class="menu-title">Style</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-unite">
+                <span class="menu-title">Unité</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=styleMateriel">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-volume">
+                <span class="menu-title">Volume</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-materiel">
+                <span class="menu-title">Matériel</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-style-materiel">
                 <span class="menu-title">Style et matériel</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-produit">
+                <span class="menu-title">Produits</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-reference">
+                <span class="menu-title">Référence</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-quantite-outils">
+                <span class="menu-title">Quantité utilisé</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=final-request">
+                <span class="menu-title">Final request</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
