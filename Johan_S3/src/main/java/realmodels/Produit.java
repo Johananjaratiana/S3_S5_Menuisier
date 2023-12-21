@@ -18,7 +18,7 @@ public class Produit extends models.Produit {
     public static void setDefaultDataToView(Connection connection, HttpServletRequest request) throws Exception{
         try{
             Produit p = new Produit();
-            List<models.Produit> produits = p.GetAll(false, connection);
+            List<models.Produit> produits = p.GetAll("", false, connection);
             request.setAttribute("produits", produits);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());

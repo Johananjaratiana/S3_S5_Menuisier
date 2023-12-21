@@ -76,10 +76,10 @@ public class Reference {
     	}
   	}
 
-  	public List<Reference> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Reference> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Reference> objectDao = new Johan_DaoSQL<Reference>(Reference.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

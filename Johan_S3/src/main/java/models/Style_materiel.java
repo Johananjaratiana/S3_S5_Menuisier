@@ -66,10 +66,10 @@ public class Style_materiel {
     	}
   	}
 
-  	public List<Style_materiel> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Style_materiel> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Style_materiel> objectDao = new Johan_DaoSQL<Style_materiel>(Style_materiel.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

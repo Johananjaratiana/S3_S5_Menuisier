@@ -36,13 +36,13 @@
 	@J_Column(name = "nom_volume")
 	private String nom_volume;
 
-	// @J_Column(name = "longueur")
+	@J_Column(name = "longueur")
 	private Float longueur;
 
-	// @J_Column(name = "largeur")
+	@J_Column(name = "largeur")
 	private Float largeur;
 
-	// @J_Column(name = "hauteur")
+	@J_Column(name = "hauteur")
 	private Float hauteur;
 
 
@@ -74,10 +74,10 @@
 	public void setLargeur(Float largeur) { this.largeur = largeur; }
 	public void setHauteur(Float hauteur) { this.hauteur = hauteur; }
 
-      public List<V_reference> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+      public List<V_reference> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
       	try{
       		Johan_DaoSQL<V_reference> objectDao = new Johan_DaoSQL<V_reference>(V_reference.class);
-      		return objectDao.SelectAll("", isChildClass, connection);
+      		return objectDao.SelectAll(addRequest, isChildClass, connection);
       	}catch(Exception ex){
       		throw new Exception(ex.getMessage());
       	}

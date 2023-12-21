@@ -25,9 +25,9 @@ public class Quantite_outils extends models.Quantite_outils {
             V_quantite_outils vqo = new V_quantite_outils();
 
 
-            List<models.Reference> references = r.GetAll(false, connection);
-            List<models.Materiel> materiels = m.GetAll(false, connection);
-            List<V_quantite_outils> quantite_outils = vqo.GetAll(false, connection);
+            List<models.Reference> references = r.GetAll("", false, connection);
+            List<models.Materiel> materiels = m.GetAll("", false, connection);
+            List<V_quantite_outils> quantite_outils = vqo.GetAll("", false, connection);
 
             request.setAttribute("references", references);
             request.setAttribute("materiels", materiels);

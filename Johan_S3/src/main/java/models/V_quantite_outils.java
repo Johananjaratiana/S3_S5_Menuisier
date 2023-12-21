@@ -15,7 +15,7 @@
 	@J_Column(name = "id_materiel")
 	private Integer id_materiel;
 
-	// @J_Column(name = "quantite")
+	@J_Column(name = "quantite")
 	private Float quantite;
 
 	@J_Column(name = "status")
@@ -49,10 +49,10 @@
 	public void setId_produit(Integer id_produit) { this.id_produit = id_produit; }
 	public void setNom_produit(String nom_produit) { this.nom_produit = nom_produit; }
 
-      public List<V_quantite_outils> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+      public List<V_quantite_outils> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
       	try{
       		Johan_DaoSQL<V_quantite_outils> objectDao = new Johan_DaoSQL<V_quantite_outils>(V_quantite_outils.class);
-      		return objectDao.SelectAll("", isChildClass, connection);
+      		return objectDao.SelectAll(addRequest, isChildClass, connection);
       	}catch(Exception ex){
       		throw new Exception(ex.getMessage());
       	}

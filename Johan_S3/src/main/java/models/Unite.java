@@ -61,10 +61,10 @@ public class Unite {
     	}
   	}
 
-  	public List<Unite> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Unite> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Unite> objectDao = new Johan_DaoSQL<Unite>(Unite.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

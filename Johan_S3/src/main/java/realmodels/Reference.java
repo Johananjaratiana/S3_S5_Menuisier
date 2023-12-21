@@ -31,11 +31,11 @@ public class Reference extends models.Reference {
             Produit p = new Produit();
             V_reference vr = new V_reference();
 
-            List<models.Categorie> categories = c.GetAll(false, connection);
-            List<models.Style> styles = s.GetAll(false, connection);
+            List<models.Categorie> categories = c.GetAll("", false, connection);
+            List<models.Style> styles = s.GetAll("", false, connection);
             List<models.Volume> volumes = v.GetAll_(connection);
-            List<models.Produit> produits = p.GetAll(false, connection);
-            List<V_reference> references = vr.GetAll(false, connection);
+            List<models.Produit> produits = p.GetAll("", false, connection);
+            List<V_reference> references = vr.GetAll("", false, connection);
 
             request.setAttribute("categories", categories);
             request.setAttribute("styles", styles);

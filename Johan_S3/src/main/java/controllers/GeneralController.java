@@ -169,10 +169,10 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 // ----------------------- STYLE FINAL 
-                case "final-request":
-                    FormuleMateriel.setDefaultDataToView(connection, request);
+                case "formule-materiel-request":
+                    V_formule_materiel.setDefaultDataToView(connection, request);
                     Materiel.setDefaultDataToView(connection, request);
-                    request.getRequestDispatcher("final.jsp").forward(request, response);
+                    request.getRequestDispatcher("formule-materiel.jsp").forward(request, response);
                     break;
                     
                 default:

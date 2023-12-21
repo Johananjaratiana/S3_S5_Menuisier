@@ -61,10 +61,10 @@ public class Categorie {
     	}
   	}
 
-  	public List<Categorie> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Categorie> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Categorie> objectDao = new Johan_DaoSQL<Categorie>(Categorie.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

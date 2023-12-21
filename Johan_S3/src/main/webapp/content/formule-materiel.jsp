@@ -1,10 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="models.*" %>
-<%@ page import="realmodels.Final" %>
 <%
-	List<Materiel> materiels = (List<Materiel>) request.getAttribute("materiels");
-	List<Final> finals = (List<Final>) request.getAttribute("finals");
+	List<V_materiel> materiels = (List<V_materiel>) request.getAttribute("materiels");
+	List<V_formule_materiel> formule_materiels = (List<V_formule_materiel>) request.getAttribute("formule_materiels");
 %>
 <div class="content-wrapper">
 	<div class="row">
@@ -14,12 +13,12 @@
 					<div class="card-body">
 					<h4 class="card-title" id="my-title">Entrée le matériel de selection</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
-						<input type="hidden" name="action" value="final-request">
+						<input type="hidden" name="action" value="formule-materiel-request">
 						<div class="form-group">
 							<label for="project">Matériel</label>
 							<select name="id_materiel" class="form-select" id="project">
-								<% for (Materiel m : materiels) { %>
-									<option value="<%= m.getId()%>"><%= m.getNom()%></option>
+								<% for (V_materiel vm : materiels) { %>
+									<option value="<%= vm.getId_materiel()%>"><%= vm.getNom_materiel()%></option>
 								<% } %>
 							</select>
 						</div>
@@ -77,11 +76,11 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(Final f : finals) { %>
+								<% for(V_formule_materiel fm : formule_materiels) { %>
 									<tr>
-										<td class="longueur"><%= f.getProduit().getNom()%></td>
-										<td class="largeur" ><%= f.getVolume().getNom()%></td>
-										<td class="hauteur" ><%= f.getQuantite()%></td>
+										<td class="longueur"><%= fm.getNom_produit()%></td>
+										<td class="largeur" ><%= fm.getNom_volume()%></td>
+										<td class="hauteur" ><%= fm.getQuantite()%></td>
 									</tr>
 								<% } %>
 							</tbody>

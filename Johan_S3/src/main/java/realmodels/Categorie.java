@@ -19,7 +19,7 @@ public class Categorie extends models.Categorie {
     {
         try{
             Categorie c = new Categorie();
-            List<models.Categorie> categories = c.GetAll(false, connection);
+            List<models.Categorie> categories = c.GetAll("", false, connection);
             request.setAttribute("categories", categories);
         }catch(Exception ex){
             ex.printStackTrace();

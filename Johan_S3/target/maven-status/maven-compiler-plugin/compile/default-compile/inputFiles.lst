@@ -4,16 +4,17 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Unite.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/com/confiance/johan_s3/resources/JakartaEE8Resource.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_fromule_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Quantite_outils.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Style_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/services/DatabaseConnection.java
-/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/FormuleMateriel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Style.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Personne.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/controllers/Index.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Reference.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Volume.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Reference.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/V_formule_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/debug/Johan_.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Produit.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/controllers/GeneralController.java
@@ -27,6 +28,7 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Categorie.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Util.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Unite.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_formule_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_style_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Categorie.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Style_materiel.java

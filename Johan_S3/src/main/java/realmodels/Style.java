@@ -20,7 +20,7 @@ public class Style extends models.Style {
     {
         try{
             Style c = new Style();
-            List<models.Style> styles = c.GetAll(false, connection);
+            List<models.Style> styles = c.GetAll("", false, connection);
             request.setAttribute("styles", styles);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());

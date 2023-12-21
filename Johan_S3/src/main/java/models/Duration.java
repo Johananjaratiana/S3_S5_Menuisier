@@ -71,10 +71,10 @@ public class Duration {
     	}
   	}
 
-  	public List<Duration> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Duration> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Duration> objectDao = new Johan_DaoSQL<Duration>(Duration.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

@@ -26,9 +26,9 @@ public class Style_materiel extends models.Style_materiel{
             Style s = new Style();                    
             Materiel m = new Materiel();
             V_style_materiel vsm = new V_style_materiel();
-            List<models.Style> styles = s.GetAll(false, connection);
-            List<models.Materiel> materiels = m.GetAll(false, connection);
-            List<V_style_materiel> style_materiels = vsm.GetAll(false, connection);
+            List<models.Style> styles = s.GetAll("", false, connection);
+            List<models.Materiel> materiels = m.GetAll("", false, connection);
+            List<V_style_materiel> style_materiels = vsm.GetAll("", false, connection);
             request.setAttribute("styles", styles);
             request.setAttribute("materiels", materiels);
             request.setAttribute("style_materiels", style_materiels);

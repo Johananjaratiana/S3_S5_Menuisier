@@ -1,4 +1,3 @@
-realmodels/Unite.class
 realmodels/Style_materiel.class
 controllers/Index.class
 models/Unite.class
@@ -10,8 +9,6 @@ controllers/Login.class
 com/confiance/johan_s3/JakartaRestConfiguration.class
 realmodels/Personne.class
 realmodels/Volume.class
-realmodels/Materiel.class
-realmodels/Categorie.class
 models/Volume.class
 models/Style_materiel.class
 realmodels/Util.class

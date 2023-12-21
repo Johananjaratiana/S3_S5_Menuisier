@@ -71,10 +71,10 @@ public class Quantite_outils {
     	}
   	}
 
-  	public List<Quantite_outils> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Quantite_outils> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Quantite_outils> objectDao = new Johan_DaoSQL<Quantite_outils>(Quantite_outils.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

@@ -11,7 +11,7 @@ public class Unite extends models.Unite{
     {
         try{
             Unite c = new Unite();
-            List<models.Unite> unites = c.GetAll(false, connection);
+            List<models.Unite> unites = c.GetAll("", false, connection);
             request.setAttribute("unites", unites);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());

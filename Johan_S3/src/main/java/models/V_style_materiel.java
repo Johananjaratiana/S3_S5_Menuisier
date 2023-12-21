@@ -44,10 +44,10 @@
 	public void setId_unite(Integer id_unite) { this.id_unite = id_unite; }
 	public void setNom_unite(String nom_unite) { this.nom_unite = nom_unite; }
 
-      public List<V_style_materiel> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+      public List<V_style_materiel> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
       	try{
       		Johan_DaoSQL<V_style_materiel> objectDao = new Johan_DaoSQL<V_style_materiel>(V_style_materiel.class);
-      		return objectDao.SelectAll("", isChildClass, connection);
+      		return objectDao.SelectAll(addRequest, isChildClass, connection);
       	}catch(Exception ex){
       		throw new Exception(ex.getMessage());
       	}

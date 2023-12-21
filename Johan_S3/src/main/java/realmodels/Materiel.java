@@ -21,10 +21,10 @@ public class Materiel extends models.Materiel{
     public static void setDefaultDataToView(Connection connection, HttpServletRequest request)throws Exception
     {
         try{
-            V_materiel m = new V_materiel();
+            V_materiel c = new V_materiel();
             Unite u = new Unite();
-            List<models.V_materiel> materiels = m.GetAll(false, connection);
-            List<models.Unite> unites = u.GetAll(false, connection);
+            List<models.V_materiel> materiels = c.GetAll("",false, connection);
+            List<models.Unite> unites = u.GetAll("",false, connection);
             request.setAttribute("materiels", materiels);
             request.setAttribute("unites", unites);
         }catch(Exception ex){

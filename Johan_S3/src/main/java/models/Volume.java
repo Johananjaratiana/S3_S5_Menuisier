@@ -76,10 +76,10 @@ public class Volume {
     	}
   	}
 
-  	public List<Volume> GetAll(Boolean isChildClass, Connection connection) throws Exception{
+  	public List<Volume> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Volume> objectDao = new Johan_DaoSQL<Volume>(Volume.class);
-    		return objectDao.SelectAll("", isChildClass, connection);
+    		return objectDao.SelectAll(addRequest, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}
