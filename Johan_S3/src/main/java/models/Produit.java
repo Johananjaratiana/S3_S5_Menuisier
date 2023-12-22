@@ -15,15 +15,20 @@ public class Produit {
 	@J_Column(name = "status")
 	private Integer status;
 
+	@J_Column(name = "id_categorie")
+	private Integer id_categorie;
+
 
 
   	public Integer getId() { return id; }
 	public String getNom() { return nom; }
 	public Integer getStatus() { return status; }
+	public Integer getId_categorie() { return id_categorie; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setNom(String nom) { this.nom = nom; }
 	public void setStatus(Integer status) { this.status = status; }
+	public void setId_categorie(Integer id_categorie) { this.id_categorie = id_categorie; }
 
     public void save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

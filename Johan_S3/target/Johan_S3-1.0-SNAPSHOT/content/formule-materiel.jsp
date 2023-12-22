@@ -3,7 +3,7 @@
 <%@ page import="models.*" %>
 <%
 	List<V_materiel> materiels = (List<V_materiel>) request.getAttribute("materiels");
-	List<V_formule_materiel> formule_materiels = (List<V_formule_materiel>) request.getAttribute("formule_materiels");
+	List<V_quantite_outils> quantite_outils = (List<V_quantite_outils>) request.getAttribute("quantite_outils");
 %>
 <div class="content-wrapper">
 	<div class="row">
@@ -37,7 +37,7 @@
 					<div class="card-body" style="min-height: 520px;">
 						<h4 class="card-title" id="my-title">Listes</h4>
 
-						<div id="crud-style">
+						<div id="crud-formule-materiel">
 							<div class="row">
 								<input class="search form-control col-6" placeholder="Search" />
 								<span class="col-3" style="color:white;background: #730000;text-align: center;">
@@ -51,7 +51,15 @@
 							<thead>
 								<th>
 									<span>Produit</span>
-									<button class="sort btn" style="color: green;" data-sort="longueur">
+									<button class="sort btn" style="color: green;" data-sort="produit">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+										</svg>
+									</button>
+								</th>
+								<th>
+									<span>Style</span>
+									<button class="sort btn" style="color: green;" data-sort="style">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 										</svg>
@@ -59,7 +67,7 @@
 								</th>
 								<th>
 									<span>Volume</span>
-									<button class="sort btn" style="color: green;" data-sort="largeur">
+									<button class="sort btn" style="color: green;" data-sort="volume">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 										</svg>
@@ -67,7 +75,7 @@
 								</th>
 								<th>
 									<span>Quantite</span>
-									<button class="sort btn" style="color: green;" data-sort="hauteur">
+									<button class="sort btn" style="color: green;" data-sort="quantite">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 										</svg>
@@ -76,11 +84,12 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(V_formule_materiel fm : formule_materiels) { %>
+								<% for(V_quantite_outils qo : quantite_outils) { %>
 									<tr>
-										<td class="longueur"><%= fm.getNom_produit()%></td>
-										<td class="largeur" ><%= fm.getNom_volume()%></td>
-										<td class="hauteur" ><%= fm.getQuantite()%></td>
+										<td class="produit"><%= qo.getNom_produit()%></td>
+										<td class="style"><%= qo.getNom_style()%></td>
+										<td class="volume" ><%= qo.getNom_volume()%></td>
+										<td class="quantite" ><%= qo.getQuantite()%></td>
 									</tr>
 								<% } %>
 							</tbody>

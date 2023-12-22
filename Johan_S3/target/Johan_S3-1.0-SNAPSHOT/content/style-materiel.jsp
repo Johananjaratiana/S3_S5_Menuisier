@@ -3,7 +3,7 @@
 <%@ page import="models.*" %>
 <%
 	List<Style> styles = (List<Style>) request.getAttribute("styles");
-	List<Materiel> materiels = (List<Materiel>) request.getAttribute("materiels");
+	List<V_materiel> materiels = (List<V_materiel>) request.getAttribute("materiels");
 	List<V_style_materiel> style_materiels = (List<V_style_materiel>) request.getAttribute("style_materiels");
 %>
 <div class="content-wrapper">
@@ -26,8 +26,8 @@
 						<div class="form-group">
 							<label for="project">Matériel</label>
 							<select name="id_materiel" class="form-select" id="project">
-								<% for (Materiel m : materiels) { %>
-									<option value="<%= m.getId()%>"><%= m.getNom()%></option>
+								<% for (V_materiel vm : materiels) { %>
+									<option value="<%= vm.getId_materiel()%>"><%= vm.getNom_materiel()%></option>
 								<% } %>
 							</select>
 						</div>
@@ -46,7 +46,7 @@
 					<div class="card-body" style="min-height: 520px;">
 						<h4 class="card-title" id="my-title">Listes des matériels et styles</h4>
 
-						<div id="crud-style">
+						<div id="crud-style-materiel">
 							<div class="row">
 								<input class="search form-control col-6" placeholder="Search" />
 								<span class="col-3" style="color:white;background: #730000;text-align: center;">
@@ -86,9 +86,11 @@
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
 								<% for (V_style_materiel vsm : style_materiels) { %>
-									<td class="materiel"><%= vsm.getNom_materiel()%></td>
-									<td class="style"	><%= vsm.getNom_style()%></td>
-									<td class="unite"	><%= vsm.getNom_unite()%></td>
+									<tr>
+										<td class="materiel"><%= vsm.getNom_materiel()%></td>
+										<td class="style"	><%= vsm.getNom_style()%></td>
+										<td class="unite"	><%= vsm.getNom_unite()%></td>
+									</tr>
 								<% } %>
 							</tbody>
 							<tfoot>

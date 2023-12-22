@@ -1,8 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="models.Produit" %>
+<%@ page import="models.*" %>
 <%
-	List<Produit> produits = (List<Produit>) request.getAttribute("produits");
+	List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
+	List<V_produit> produits = (List<V_produit>) request.getAttribute("produits");
 %>
 <div class="content-wrapper">
 	<div class="row">
@@ -13,6 +14,14 @@
 					<h4 class="card-title" id="my-title">Nouvelle produit</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="produit-insert">
+						<div class="form-group">
+							<label for="project">Catégorie</label>
+							<select name="id_categorie" class="form-select" id="project">
+								<% for (Categorie c : categories) { %>
+									<option value="<%= c.getId()%>"><%= c.getNom()%></option>
+								<% } %>
+							</select>
+						</div>
 						<div class="form-group">
 							<label for="ip">Nom</label>
 							<input type="text" name="nom" class="form-control" id="ip" placeholder="...">
@@ -32,7 +41,7 @@
 					<div class="card-body" style="min-height: 520px;">
 						<h4 class="card-title" id="my-title">Liste des catégories</h4>
 
-						<div id="crud-style">
+						<div id="crud-produit">
 							<div class="row">
 								<input class="search form-control col-6" placeholder="Search" />
 								<span class="col-3" style="color:white;background: #730000;text-align: center;">
@@ -45,8 +54,16 @@
 							<table class="table">
 							<thead>
 								<th>
-									<span>Nom</span>
-									<button class="sort btn" style="color: green;" data-sort="nom">
+									<span>Produit</span>
+									<button class="sort btn" style="color: green;" data-sort="produit">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+										</svg>
+									</button>
+								</th>
+								<th>
+									<span>Catégorie</span>
+									<button class="sort btn" style="color: green;" data-sort="categorie">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 										</svg>
@@ -55,9 +72,10 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(Produit p : produits) { %>
+								<% for(V_produit vp : produits) { %>
 									<tr>
-										<td class="nom"><%= p.getNom()%></td>
+										<td class="produit"><%= vp.getNom_produit()%></td>
+										<td class="categorie"><%= vp.getNom_categorie()%></td>
 									</tr>
 								<% } %>
 							</tbody>

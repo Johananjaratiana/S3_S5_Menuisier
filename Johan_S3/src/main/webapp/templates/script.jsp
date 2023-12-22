@@ -18,66 +18,84 @@
     };
     
     var userList = new List('crud', options);
-    // CRUD TEMPLATE
-
-
     // CRUD CATEGORIE
     options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-categorie', options);
-    // CRUD CATEGORIE
 
-    // CRUD style
+    // CRUD STYLE
     options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-style', options);
-    // CRUD style
 
-    // CRUD unite
+    // CRUD UNITE
     options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-unite', options);
-    // CRUD unite
 
-    // CRUD volume
+    // CRUD VOLUME
     options = {
-      valueNames: [ 'longueur', 'largeur', 'hauteur', 'volume', 'taille' ],
+      valueNames: [ 'longueur', 'largeur', 'hauteur', 'volume', 'nom' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-volume', options);
-    // CRUD volume
 
-    // CRUD materiel
+    // CRUD MATERIEL
     options = {
       valueNames: [ 'nom', 'unite' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-materiel', options);
-    // CRUD materiel
 
-    // CRUD style-materiel
+    // CRUD STYLE-MATERIEL
     options = {
-      valueNames: [ 'style', 'materiel', 'unite' ],
+      valueNames: [ 'materiel', 'style', 'unite' ],
       page: 5,
       pagination: true
     };
-    
     userList = new List('crud-style-materiel', options);
-    // CRUD style-materiel
-  </script>
+
+    // CRUD PRODUIT
+    options = {
+      valueNames: [ 'categorie', 'produit' ],
+      page: 5,
+      pagination: true
+    };
+    userList = new List('crud-produit', options);
+
+    // CRUD REFERENCE
+    options = {
+      valueNames: [ 'produit', 'categorie', 'style', 'taille' ],
+      page: 5,
+      pagination: true
+    };
+    userList = new List('crud-reference', options);
+
+    // CRUD QUANTITE OUTILS
+    options = {
+      valueNames: [ 'reference', 'materiel', 'quantite' ],
+      page: 5,
+      pagination: true
+    };
+    userList = new List('crud-quantte-outils', options);
+
+    // CRUD FORMULE MATERIEL
+    options = {
+      valueNames: [ 'produit', 'style',  'volume', 'quantite' ],
+      page: 5,
+      pagination: true
+    };
+    userList = new List('crud-formule-materiel', options);
+
+    </script>

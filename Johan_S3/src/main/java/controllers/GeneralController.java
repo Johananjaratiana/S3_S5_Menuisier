@@ -103,75 +103,84 @@ public class GeneralController extends HttpServlet {
                     break;
                 
                 case "volume-insert":
-                    Volume volume = new Volume(request);
+                    Volume volume = Johan_Servlet.constructByFormView(Volume.class, request);
                     volume.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-volume");
                     break;
 
                 // ----------------------- MATERIEL 
                 case "crud-materiel":
+                    Unite.setDefaultDataToView(connection, request);
                     Materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("materiel.jsp").forward(request, response);
                     break;
                 
                 case "materiel-insert":
-                    Materiel materiel = new Materiel(request);
+                    Materiel materiel = Johan_Servlet.constructByFormView(Materiel.class, request);
                     materiel.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-materiel");
                     break;
 
                 // ----------------------- STYLE MATERIEL 
                 case "crud-style-materiel":
+                    Style.setDefaultDataToView(connection, request);
+                    Materiel.setDefaultDataToView(connection, request);
                     Style_materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("style-materiel.jsp").forward(request, response);
                     break;
                 
                 case "style-materiel-insert":
-                    Style_materiel style_materiel = new Style_materiel(request);
+                    Style_materiel style_materiel = Johan_Servlet.constructByFormView(Style_materiel.class, request);
                     style_materiel.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-style-materiel");
                     break;
                 
                 // ----------------------- STYLE PRODUIT
                 case "crud-produit":
+                    Categorie.setDefaultDataToView(connection, request);
                     Produit.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("produit.jsp").forward(request, response);
                     break;
                 
                 case "produit-insert":
-                    Produit produit = new Produit(request);
+                    Produit produit = Johan_Servlet.constructByFormView(Produit.class, request);
                     produit.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-produit");
                     break;
 
                 // ----------------------- STYLE REFERENCE 
                 case "crud-reference":
+                    Style.setDefaultDataToView(connection, request);
+                    Volume.setDefaultDataToView(connection, request);
+                    Produit.setDefaultDataToView(connection, request);
                     Reference.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("reference.jsp").forward(request, response);
                     break;
                 
                 case "reference-insert":
-                    Reference reference = new Reference(request);
+                    Reference reference = Johan_Servlet.constructByFormView(Reference.class, request);
                     reference.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-reference");
                     break;
 
                 // ----------------------- STYLE REFERENCE 
                 case "crud-quantite-outils":
+                    Reference.setDefaultDataToView(connection, request);
+                    Materiel.setDefaultDataToView(connection, request);
                     Quantite_outils.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("quantite-outils.jsp").forward(request, response);
                     break;
                 
                 case "quantite-outils-insert":
-                    Quantite_outils quantite_outils = new Quantite_outils(request);
+                    Quantite_outils quantite_outils = Johan_Servlet.constructByFormView(Quantite_outils.class, request);
                     quantite_outils.save(true, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-quantite-outils");
                     break;
 
                 // ----------------------- STYLE FINAL 
                 case "formule-materiel-request":
-                    V_formule_materiel.setDefaultDataToView(connection, request);
                     Materiel.setDefaultDataToView(connection, request);
+                    V_quantite_outils.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("formule-materiel.jsp").forward(request, response);
                     break;
                     

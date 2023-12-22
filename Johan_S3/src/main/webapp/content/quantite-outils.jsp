@@ -2,8 +2,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="models.*" %>
 <%
-	List<Reference> references = (List<Reference>) request.getAttribute("references");
-	List<Materiel> materiels = (List<Materiel>) request.getAttribute("materiels");
+	List<V_reference> references = (List<V_reference>) request.getAttribute("references");
+	List<V_materiel> materiels = (List<V_materiel>) request.getAttribute("materiels");
 	List<V_quantite_outils> quantite_outils = (List<V_quantite_outils>) request.getAttribute("quantite_outils");
 %>
 <div class="content-wrapper">
@@ -18,16 +18,16 @@
 						<div class="form-group">
 							<label for="project">Référence</label>
 							<select name="id_reference" class="form-select" id="project">
-								<% for (Reference r : references) { %>
-									<option value="<%= r.getId()%>"><%= r.getId_produit()%></option>
+								<% for (V_reference vr : references) { %>
+									<option value="<%= vr.getId()%>"><%= vr.getNom_produit() + " " + vr.getNom_style() + " " + vr.getNom_volume()%></option>
 								<% } %>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="project">Materiel</label>
 							<select name="id_materiel" class="form-select" id="project">
-								<% for (Materiel m : materiels) { %>
-									<option value="<%= m.getId()%>"><%= m.getNom()%></option>
+								<% for (V_materiel vm : materiels) { %>
+									<option value="<%= vm.getId_materiel()%>"><%= vm.getNom_materiel()%></option>
 								<% } %>
 							</select>
 						</div>
@@ -50,7 +50,7 @@
 					<div class="card-body" style="min-height: 520px;">
 						<h4 class="card-title" id="my-title">Listes Quantités matériels</h4>
 
-						<div id="crud-style">
+						<div id="crud-quantite-outils">
 							<div class="row">
 								<input class="search form-control col-6" placeholder="Search" />
 								<span class="col-3" style="color:white;background: #730000;text-align: center;">
@@ -64,7 +64,7 @@
 							<thead>
 								<th>
 									<span>Référence</span>
-									<button class="sort btn" style="color: green;" data-sort="produit">
+									<button class="sort btn" style="color: green;" data-sort="reference">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 										</svg>
@@ -91,7 +91,7 @@
 							<tbody class="list">
 								<% for(V_quantite_outils vqo : quantite_outils) { %>
 									<tr>
-										<td class="produit"><%= vqo.getNom_produit()%></td>
+										<td class="reference"><%= vqo.getNom_produit() + " " + vqo.getNom_style() + " " + vqo.getNom_volume()%></td>
 										<td class="materiel"><%= vqo.getNom_materiel()%></td>
 										<td class="quantite"><%= vqo.getQuantite()%></td>
 									</tr>

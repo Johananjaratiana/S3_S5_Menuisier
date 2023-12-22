@@ -2,10 +2,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="models.*" %>
 <%
-	List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
 	List<Style> styles = (List<Style>) request.getAttribute("styles");
 	List<Volume> volumes = (List<Volume>) request.getAttribute("volumes");
-	List<Produit> produits = (List<Produit>) request.getAttribute("produits");
+	List<V_produit> produits = (List<V_produit>) request.getAttribute("produits");
 	List<V_reference> references = (List<V_reference>) request.getAttribute("references");
 %>
 <div class="content-wrapper">
@@ -17,14 +16,6 @@
 					<h4 class="card-title" id="my-title">Ajout référence</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="reference-insert">
-						<div class="form-group">
-							<label for="project">Catégorie</label>
-							<select name="id_categorie" class="form-select" id="project">
-								<% for (Categorie c : categories) { %>
-									<option value="<%= c.getId()%>"><%= c.getNom()%></option>
-								<% } %>
-							</select>
-						</div>
 						<div class="form-group">
 							<label for="project">Style</label>
 							<select name="id_style" class="form-select" id="project">
@@ -44,8 +35,8 @@
 						<div class="form-group">
 							<label for="project">Produit</label>
 							<select name="id_produit" class="form-select" id="project">
-								<% for (Produit p : produits) { %>
-									<option value="<%= p.getId()%>"><%= p.getNom()%></option>
+								<% for (V_produit p : produits) { %>
+									<option value="<%= p.getId_produit()%>"><%= p.getNom_produit()%></option>
 								<% } %>
 							</select>
 						</div>
@@ -64,7 +55,7 @@
 					<div class="card-body" style="min-height: 520px;">
 						<h4 class="card-title" id="my-title">Listes référence</h4>
 
-						<div id="crud-style">
+						<div id="crud-reference">
 							<div class="row">
 								<input class="search form-control col-6" placeholder="Search" />
 								<span class="col-3" style="color:white;background: #730000;text-align: center;">

@@ -9,9 +9,6 @@ public class Reference {
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_categorie")
-	private Integer id_categorie;
-
 	@J_Column(name = "id_style")
 	private Integer id_style;
 
@@ -27,14 +24,12 @@ public class Reference {
 
 
   	public Integer getId() { return id; }
-	public Integer getId_categorie() { return id_categorie; }
 	public Integer getId_style() { return id_style; }
 	public Integer getId_volume() { return id_volume; }
 	public Integer getStatus() { return status; }
 	public Integer getId_produit() { return id_produit; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_categorie(Integer id_categorie) { this.id_categorie = id_categorie; }
 	public void setId_style(Integer id_style) { this.id_style = id_style; }
 	public void setId_volume(Integer id_volume) { this.id_volume = id_volume; }
 	public void setStatus(Integer status) { this.status = status; }
