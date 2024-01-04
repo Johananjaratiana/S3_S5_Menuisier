@@ -13467,7 +13467,7 @@ input:focus {
   background: linear-gradient(to right, rgba(240, 147, 251, 0.9), rgba(245, 87, 108, 0.9)); }
 
 .sidebar-grdient-dark, .sidebar {
-  background: linear-gradient(to bottom, #4aca6a 0%, #078e62 20%, #0062fa 100%);
+  background: linear-gradient(to bottom, #4aca6a 0%, #258e07 20%, #9d7d00 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a008a', endColorstr='#fa0053', GradientType=0 );
   color: #ffffff; }
 
@@ -14134,7 +14134,9 @@ html {
     width: 100%; }
 
 .container-scroller {
-  overflow: hidden; }
+  overflow: hidden; 
+  background-color: #9d7d00;
+}
 
 pre {
   background: #e8eff4;

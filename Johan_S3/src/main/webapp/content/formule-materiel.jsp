@@ -24,7 +24,7 @@
 						</div>
 						<br/>
 						<button type="reset" class="btn btn-light offset-md-5">Reset</button>
-						<button type="submit" class="btn btn-success mr-2">Ajouter</button>
+						<button type="submit" class="btn btn-success mr-2">Voir</button>
 					</form>
 					</div>
 				</div>
@@ -35,7 +35,13 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="card-title" id="my-title">Listes</h4>
+						<h4 class="card-title" id="my-title">
+							Listes produit(s) utilisant du
+							<% 
+								if(quantite_outils.size() > 0)out.print(quantite_outils.get(0).getNom_materiel());
+								else out.print("...");
+							%>
+						</h4>
 
 						<div id="crud-formule-materiel">
 							<div class="row">

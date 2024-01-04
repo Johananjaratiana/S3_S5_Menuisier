@@ -28,7 +28,7 @@
 							<label for="project">Volume</label>
 							<select name="id_volume" class="form-select" id="project">
 								<% for (Volume v : volumes) { %>
-									<option value="<%= v.getId()%>"><%= v.getNom()%></option>
+									<option value="<%= v.getId()%>"><%= v.getNom() + " ( " + realmodels.Volume.getVolume(v) + " ) "%></option>
 								<% } %>
 							</select>
 						</div>

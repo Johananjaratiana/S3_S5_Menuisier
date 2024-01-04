@@ -51,7 +51,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=crud-reference">
-                <span class="menu-title">Référence</span>
+                <span class="menu-title">Référence produits</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
@@ -63,7 +63,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=formule-materiel-request">
-                <span class="menu-title">Final request</span>
+                <span class="menu-title">Formule matériel</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
