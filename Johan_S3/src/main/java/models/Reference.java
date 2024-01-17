@@ -35,10 +35,10 @@ public class Reference {
 	public void setStatus(Integer status) { this.status = status; }
 	public void setId_produit(Integer id_produit) { this.id_produit = id_produit; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Reference> objectDao = new Johan_DaoSQL<Reference>(Reference.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

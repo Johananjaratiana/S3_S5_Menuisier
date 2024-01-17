@@ -30,10 +30,10 @@ public class Style_materiel {
 	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
 	public void setStatus(Integer status) { this.status = status; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Style_materiel> objectDao = new Johan_DaoSQL<Style_materiel>(Style_materiel.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

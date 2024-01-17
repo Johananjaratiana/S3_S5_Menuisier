@@ -16,7 +16,7 @@ import services.DatabaseConnection;
  *
  * @author johan
  */
-public class Personne extends Table {
+public class Personne {
     Integer id;
     String nom;
     String prenom;
@@ -101,10 +101,6 @@ public class Personne extends Table {
         this.setEmail(request.getParameter("email"));
         this.setDtn(Date.valueOf(request.getParameter("dtn")));
         this.setMdp(request.getParameter("mdp"));
-    }
-    public Personne(ResultSet rs){
-        super(rs);
-        this.construct(rs);
     }
     
     public static Personne Login(String email , String mdp) throws Exception

@@ -26,6 +26,7 @@
 								<% } %>
 							</select>
 						</div>
+
 						<br/>
 						<button type="reset" class="btn btn-light offset-md-5">Reset</button>
 						<button type="submit" class="btn btn-success mr-2">Ajouter</button>

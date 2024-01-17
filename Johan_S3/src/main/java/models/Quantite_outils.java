@@ -35,10 +35,10 @@ public class Quantite_outils {
 	public void setQuantite(Float quantite) { this.quantite = quantite; }
 	public void setStatus(Integer status) { this.status = status; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Quantite_outils> objectDao = new Johan_DaoSQL<Quantite_outils>(Quantite_outils.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

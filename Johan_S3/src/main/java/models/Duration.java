@@ -35,10 +35,10 @@ public class Duration {
 	public void setHeure(Integer heure) { this.heure = heure; }
 	public void setStatus(Integer status) { this.status = status; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Duration> objectDao = new Johan_DaoSQL<Duration>(Duration.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

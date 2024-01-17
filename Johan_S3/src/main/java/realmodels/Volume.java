@@ -2,7 +2,6 @@ package realmodels;
 
 import java.sql.Connection;
 import java.util.*;
-import java.sql.*;
 
 import javax.servlet.http.HttpServletRequest;
 

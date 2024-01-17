@@ -13,7 +13,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="card-title" id="my-title">Ajout référence</h4>
+					<h4 class="card-title" id="my-title">Ajout meuble</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="reference-insert">
 						<div class="form-group">
@@ -53,7 +53,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="card-title" id="my-title">Listes référence</h4>
+						<h4 class="card-title" id="my-title">Listes des meubles</h4>
 
 						<div id="crud-reference">
 							<div class="row">

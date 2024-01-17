@@ -40,10 +40,10 @@ public class Volume {
 	public void setStatus(Integer status) { this.status = status; }
 	public void setNom(String nom) { this.nom = nom; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Volume> objectDao = new Johan_DaoSQL<Volume>(Volume.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

@@ -20,5 +20,4 @@ public class Reference extends models.Reference {
             throw new Exception(ex.getMessage());
         }
     }
-    
 }

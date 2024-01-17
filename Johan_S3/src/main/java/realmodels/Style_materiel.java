@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import johan.dao.annotation.J_Column;
 import models.V_style_materiel;
 
 import java.sql.*;

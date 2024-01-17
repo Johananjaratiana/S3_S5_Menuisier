@@ -40,10 +40,10 @@ public class Personne {
 	public void setEmail(String email) { this.email = email; }
 	public void setMdp(String mdp) { this.mdp = mdp; }
 
-    public void save(Boolean isChildClass, Connection connection) throws Exception{
+    public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{
     		Johan_DaoSQL<Personne> objectDao = new Johan_DaoSQL<Personne>(Personne.class);
-    		objectDao.save(this, isChildClass, connection);
+    		return objectDao.save(this, isChildClass, connection);
     	}catch(Exception ex){
     		throw new Exception(ex.getMessage());
     	}

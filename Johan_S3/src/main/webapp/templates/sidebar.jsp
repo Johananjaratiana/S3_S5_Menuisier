@@ -51,7 +51,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=crud-reference">
-                <span class="menu-title">Référence produits</span>
+                <span class="menu-title">Meubles</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
@@ -67,6 +67,60 @@
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-prix-materiel">
+                <span class="menu-title">Prix des matériels</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=filtre-prix">
+                <span class="menu-title">Filtre par prix de fabrication</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-stock">
+                <span class="menu-title">Entrée stock</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-commande">
+                <span class="menu-title">Nouvelle commande</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-prix-meuble">
+                <span class="menu-title">Prix des meubles</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-type-employee">
+                <span class="menu-title">Type employée</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-duree-fabrication">
+                <span class="menu-title">Fabrication</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=benefice-meuble">
+                <span class="menu-title">Bénéfice meubles</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            
             <!--<li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=clustering">
                 <span class="menu-title">Clustering</span>
