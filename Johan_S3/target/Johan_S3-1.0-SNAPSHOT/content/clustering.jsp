@@ -12,7 +12,7 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" id="my-title">New front end</h4>
+                    <h4 class="" id="my-title">New front end</h4>
                     <form class="forms-sample">
                       <div class="form-group">
                         <label for="ip">IP binding</label>
@@ -35,7 +35,7 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" id="my-title">New cluster</h4>
+                    <h4 class="" id="my-title">New cluster</h4>
                     <form class="forms-sample">
                       <div class="form-group">
                         <label for="project">Project</label>
@@ -76,7 +76,7 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title" id="my-title">Front end</h4>
+                  <h4 class="" id="my-title">Front end</h4>
                   <table class="table">
                     <thead>
                       <tr>
@@ -97,7 +97,7 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title" id="my-title">All clustering</h4>
+                  <h4 class="" id="my-title">All clustering</h4>
                   <table class="table">
                     <thead>
                       <tr>

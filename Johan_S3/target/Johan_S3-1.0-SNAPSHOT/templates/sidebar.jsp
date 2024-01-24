@@ -38,6 +38,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-prix-materiel">
+                <span class="menu-title">Prix des matériels</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=crud-style-materiel">
                 <span class="menu-title">Style et matériel</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
@@ -50,73 +56,74 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-reference">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-meuble">
                 <span class="menu-title">Meubles</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-quantite-outils">
-                <span class="menu-title">Quantité utilisé</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=formule-materiel-request">
-                <span class="menu-title">Formule matériel</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-prix-materiel">
-                <span class="menu-title">Prix des matériels</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=filtre-prix">
-                <span class="menu-title">Filtre par prix de fabrication</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-stock">
-                <span class="menu-title">Entrée stock</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-commande">
-                <span class="menu-title">Nouvelle commande</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-              </a>
-            </li>
-
-
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=crud-prix-meuble">
                 <span class="menu-title">Prix des meubles</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-quantite-outils">
+                <span class="menu-title">Meubles et quantité matériel</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-stock">
+                <span class="menu-title">Entrée matériels en stock</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=crud-type-employee">
                 <span class="menu-title">Type employée</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
-
             <li class="nav-item">
-              <a class="nav-link" href="/Johan_S3/Controller?action=crud-duree-fabrication">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-mode-fabrication">
+                <span class="menu-title">Mode de fabrication</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-fabrication">
                 <span class="menu-title">Fabrication</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-employee">
+                <span class="menu-title">Employées</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=crud-employement">
+                <span class="menu-title">Affectation d` employées</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/Johan_S3/Controller?action=benefice-meuble">
-                <span class="menu-title">Bénéfice meubles</span>
+                <span class="menu-title">Filtre bénéfice apporté (/meubles)</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=formule-materiel-request">
+                <span class="menu-title">Filtre par utilisation de matériel</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Johan_S3/Controller?action=filtre-prix">
+                <span class="menu-title">Filtre par prix de fabrication</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
               </a>
             </li>

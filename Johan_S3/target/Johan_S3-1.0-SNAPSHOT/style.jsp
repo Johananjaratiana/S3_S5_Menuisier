@@ -18,6 +18,9 @@
 		<!-- partial:partials/_sidebar -->
 		<jsp:include page="templates/sidebar.jsp" />
 		<!-- partial -->
+		<!-- error -->
+		<jsp:include page="templates/error.jsp" />
+		<!-- error -->
 		<!-- Real-content -->
 		<jsp:include page="content/style.jsp"/>
 		<!-- Real-content -->

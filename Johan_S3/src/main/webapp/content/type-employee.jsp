@@ -10,7 +10,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="card-title" id="my-title">Type employée</h4>
+					<h4 class="" id="my-title">Type employée</h4>
 						<form class="form-horizontal" action="/Johan_S3/Controller" method="post">
 							<input type="hidden" name="action" value="type-employee-insert">
 							<div class="form-group">
@@ -38,7 +38,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="card-title" id="my-title">Liste type employée</h4>
+						<h4 class="" id="my-title">Liste type employée</h4>
 
 						<div id="crud-produit">
 							<div class="row">

@@ -26,4 +26,17 @@ public class Style extends models.Style {
             throw new Exception(ex.getMessage());
         }
     }
+
+    public static String BuildErrorStyleMateriel(){
+        return "Ca existe déjà";
+    }
+
+    public static void InsertStyleMateriel(Connection connection,models.Style_materiel style_materiel, HttpServletRequest request) {
+        try{
+            style_materiel.save(false, connection);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            request.setAttribute("error", BuildErrorStyleMateriel());
+        }
+    }
 }

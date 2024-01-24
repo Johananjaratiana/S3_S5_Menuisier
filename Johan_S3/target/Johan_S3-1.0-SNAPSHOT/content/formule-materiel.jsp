@@ -11,7 +11,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="card-title" id="my-title">Entrée le matériel de selection</h4>
+					<h4 class="" id="my-title">Entrée le matériel de selection</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="formule-materiel-request">
 						<div class="form-group">
@@ -35,7 +35,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="card-title" id="my-title">
+						<h4 class="" id="my-title">
 							Listes produit(s) utilisant du
 							<% 
 								if(quantite_outils.size() > 0)out.print(quantite_outils.get(0).getNom_materiel());

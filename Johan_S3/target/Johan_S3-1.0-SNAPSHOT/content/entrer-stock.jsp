@@ -11,7 +11,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="card-title" id="my-title">Entrée de stock</h4>
+					<h4 class="" id="my-title">Entrée de stock</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="stock-insert">
 						<div class="form-group">
@@ -39,7 +39,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="card-title" id="my-title">Stock restant par matériel</h4>
+						<h4 class="" id="my-title">Stock restant par matériel</h4>
 
 						<div id="crud-produit">
 							<div class="row">

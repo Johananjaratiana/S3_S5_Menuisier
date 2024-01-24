@@ -9,93 +9,104 @@
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/list.js"></script>
+  <script src="assets/js/numeral.min.js"></script>
+  <script src="assets/js/number-formatter.js">
+  </script>
   <script>
     // CRUD TEMPLATE
-    var options = {
+    var template_options = {
       valueNames: [ 'name', 'born' ],
       page: 5,
       pagination: true
     };
-    
-    var userList = new List('crud', options);
+    var template_userList = new List('crud', template_options);
+
     // CRUD CATEGORIE
-    options = {
+    var categorie_options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-categorie', options);
+    var categorie_userList = new List('crud-categorie', categorie_options);
 
     // CRUD STYLE
-    options = {
+    var style_options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-style', options);
+    var style_userList = new List('crud-style', style_options);
 
     // CRUD UNITE
-    options = {
+    var unite_options = {
       valueNames: [ 'nom' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-unite', options);
+    var unite_userList = new List('crud-unite', unite_options);
 
     // CRUD VOLUME
-    options = {
+    var volume_options = {
       valueNames: [ 'longueur', 'largeur', 'hauteur', 'volume', 'nom' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-volume', options);
+    var volume_userList = new List('crud-volume', volume_options);
 
     // CRUD MATERIEL
-    options = {
+    var materiel_options = {
       valueNames: [ 'nom', 'unite' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-materiel', options);
+    var materiel_userList = new List('crud-materiel', materiel_options);
 
     // CRUD STYLE-MATERIEL
-    options = {
+    var style_materiel_options = {
       valueNames: [ 'materiel', 'style', 'unite' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-style-materiel', options);
+    var style_materiel_userList = new List('crud-style-materiel', style_materiel_options);
 
     // CRUD PRODUIT
-    options = {
+    var produit_options = {
       valueNames: [ 'categorie', 'produit' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-produit', options);
+    var produit_userList = new List('crud-produit', produit_options);
 
     // CRUD REFERENCE
-    options = {
+    var reference_options = {
       valueNames: [ 'produit', 'categorie', 'style', 'taille' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-reference', options);
+    var reference_userList = new List('crud-reference', reference_options);
 
     // CRUD QUANTITE OUTILS
-    options = {
+    var outils_options = {
       valueNames: [ 'reference', 'materiel', 'quantite' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-quantte-outils', options);
+    var outils_userList = new List('crud-quantte-outils', outils_options);
 
     // CRUD FORMULE MATERIEL
-    options = {
+    var materiel_options = {
       valueNames: [ 'produit', 'style',  'volume', 'quantite' ],
       page: 5,
       pagination: true
     };
-    userList = new List('crud-formule-materiel', options);
+    var materiel_userList = new List('crud-formule-materiel', materiel_options);
+
+    // CRUD EMPLOYEMENT
+    var employement_options = {
+      valueNames: [ 'nom', 'type-employee',  'grade', 'age', 'anciennete', 'taux-horaire' ],
+      page: 5,
+      pagination: true
+    };
+    var employement_userList = new List('crud-employement', employement_options);
 
     </script>

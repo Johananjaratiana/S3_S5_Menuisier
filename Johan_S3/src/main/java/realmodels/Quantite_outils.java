@@ -30,19 +30,29 @@ public class Quantite_outils extends models.Quantite_outils {
                 + quantite_outil.getId_materiel();
     }
 
-    public static Boolean CanInsert(models.Quantite_outils quantite_outil, Connection connection,
+    public static void InsertQuantiteUtiliser(models.Quantite_outils quantite_outil, Connection connection,
             HttpServletRequest request) throws Exception {
         try {
+            if(quantite_outil.getQuantite() == null){
+                throw new Exception("Veuillez insérez une quantité.");
+            }
             models.V_contrainte_style_materiel_reference contrainte = new models.V_contrainte_style_materiel_reference();
             List<models.V_contrainte_style_materiel_reference> list = contrainte
                     .GetAll(BuildWhereConstraint(quantite_outil), false, connection);
             if (list.size() == 0) {
                 throw new Exception("On ne peut pas utiliser cette matériels séléctionner dans ce meuble.");
             }
-            return true;
+            AvoidDuplicateMateriel(connection, quantite_outil);
         } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
-            return false;
+        }
+    }
+
+    public static void AvoidDuplicateMateriel(Connection connection, models.Quantite_outils quantite_outils)throws Exception{
+        try{
+            quantite_outils.save(false, connection);
+        }catch(Exception ex){
+            throw new Exception("Ce materiel est deja utiliser par ce meubles");
         }
     }
 
