@@ -575,3 +575,4 @@ INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VAL
 INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 18, 5, 23.0, '2024-01-18 03:58:15 PM', null);
 INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 19, 5, -45.0, '2024-01-18 03:58:31 PM', 12);
 INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 20, 4, -30.0, '2024-01-18 03:58:31 PM', 12);
+    

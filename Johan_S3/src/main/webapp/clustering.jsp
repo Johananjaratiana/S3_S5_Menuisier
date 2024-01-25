@@ -45,6 +45,22 @@
   <jsp:include page="templates/script.jsp" />
   <!-- Script -->
 
+  <!-- Chart script -->
+  <script src="assets/chart/chart.js"></script>
+  <jsp:include page="script/chart-multiple-lines.jsp" />
+  <jsp:include page="script/chart-doughnut.jsp" />
+  <!-- Chart script -->
+
+  <!-- Plotly script -->
+  <jsp:include page="script/plotly-donut.jsp" />
+  <!-- Plotly script -->
+
+  <!-- Google chart script -->
+  <jsp:include page="script/google-chart.jsp" />
+  <!-- Google chart script -->
+
+  <!-- Specific script -->
+
 </body>
 
 </html>

@@ -57,10 +57,6 @@ public class GeneralController extends HttpServlet {
                     request.getRequestDispatcher("crud.jsp").forward(request, response);
                     break;
 
-                case "list":
-                    request.getRequestDispatcher("pagination.jsp").forward(request, response);
-                    break;
-
                 // ----------------------- CATEGORIE
                 case "crud-categorie":
                     Categorie.setDefaultDataToView(connection, request);
@@ -332,7 +328,6 @@ public class GeneralController extends HttpServlet {
                     response.sendRedirect("/Johan_S3/Controller?action=crud-grade-employee");
                     break;
                 
-
                 // ----------------------- GRADE PARAMS
                 case "crud-grade-params":
                     Grade_params.setDefaultDataToView(connection, request);
@@ -341,11 +336,58 @@ public class GeneralController extends HttpServlet {
 
                 case "grade-params-insert":
                     Grade_params.save(request, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-grade-params");
+                    request.getRequestDispatcher("grade-params.jsp").forward(request, response);
                     break;
 
                 default:
                     throw new Exception("No action to be answered");
+
+                
+                // ----------------------- SEXE
+                case "crud-sexe":
+                    Sexe.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("sexe.jsp").forward(request, response);
+                    break;
+
+                case "sexe-insert":
+                    models.Sexe sexe = Johan_Servlet.constructByFormView(models.Sexe.class, request);
+                    sexe.save(false, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-sexe");
+                    break;
+                
+                // ----------------------- CLIENT
+                case "crud-client":
+                    Client.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("client.jsp").forward(request, response);
+                    break;
+
+                case "client-insert":
+                    Client.save(request, connection);
+                    Client.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("client.jsp").forward(request, response);
+                    break;
+
+                
+                // ----------------------- CLIENT
+                case "crud-vente":
+                    Vente.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("vente.jsp").forward(request, response);
+                    break;
+
+                case "vente-insert":
+                    Vente.save(request, connection);
+                    Vente.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("vente.jsp").forward(request, response);
+                    break;
+                
+                // ---------------------- STATISTQUE
+                case "statistique-vente":
+                    Statistique_vente.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("statistique-vente.jsp").forward(request, response);
+                    break;
+                    
+
+                    
             }
         } catch (Exception ex) {
             ex.printStackTrace();

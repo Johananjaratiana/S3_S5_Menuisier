@@ -181,6 +181,54 @@
                 </div>
             </li>
 
+                        
+            <li class="nav-item">
+                <a class="my-nav-link collapsed" href="#" data-toggle="collapse" data-target=".client-collapse" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fa fa-industry"></i>
+                    <span>CLIENT</span>
+                </a>
+                <div class="collapse client-collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">                    
+                    <div class="bg-gradient-info collapse-inner rounded my-collapsed">
+
+                        <h6 class="collapse-header">Insertions</h6>
+                        <a class="my-nav-link collapse-item" href="/Johan_S3/Controller?action=crud-sexe">
+                          <span class="menu-title">Sexe</span>
+                          <%-- <i class="mdi mdi-contacts menu-icon"></i> --%>
+                        </a>
+                        <a class="my-nav-link collapse-item" href="/Johan_S3/Controller?action=crud-client">
+                          <span class="menu-title">Client</span>
+                          <%-- <i class="mdi mdi-contacts menu-icon"></i> --%>
+                        </a>
+
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="my-nav-link collapsed" href="#" data-toggle="collapse" data-target=".vente-collapse" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fa fa-bookmark"></i>
+                    <span>VENTE</span>
+                </a>
+                <div class="collapse vente-collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">                    
+                    <div class="bg-gradient-info collapse-inner rounded my-collapsed">
+
+                        <h6 class="collapse-header">Nouvelle</h6>
+                        <a class="my-nav-link collapse-item" href="/Johan_S3/Controller?action=crud-vente">
+                          <span class="menu-title">Vente</span>
+                          <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                        
+                        <h6 class="collapse-header">Statistiques</h6>
+                        <a class="my-nav-link collapse-item" href="/Johan_S3/Controller?action=statistique-vente">
+                          <span class="menu-title">Stat.</span>
+                          <%-- <i class="mdi mdi-contacts menu-icon"></i> --%>
+                        </a>
+                      
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="my-nav-link collapsed" href="#" data-toggle="collapse" data-target=".filtre-collapse" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fa fa-filter"></i>

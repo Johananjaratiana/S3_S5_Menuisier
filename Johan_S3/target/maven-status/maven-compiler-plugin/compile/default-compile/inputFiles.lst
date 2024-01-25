@@ -6,11 +6,14 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_full_stock.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Meuble.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Prix_meuble.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Client.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_contrainte_style_materiel_meuble.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Personne.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_taux_salaire_employe.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_benefice_meuble.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_vente.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Prix_meuble.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Vente.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Produit.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_duree_fabrication.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Meuble.java
@@ -25,6 +28,7 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Categorie.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_prix_materiel_latest_date.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Unite.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Sexe.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Mode_fabrication.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Categorie.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Type_employee.java
@@ -36,9 +40,11 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Style.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Employee.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_filtre_produit_by_prix.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Client.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Unite.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Fabrication.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Statistique_vente.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/com/confiance/johan_s3/resources/JakartaEE8Resource.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Employement.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Grade_params.java
@@ -56,6 +62,7 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_stock_restante.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/com/confiance/johan_s3/JakartaRestConfiguration.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Produit.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Sexe.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_meuble.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Employee.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Duration.java
@@ -64,6 +71,7 @@
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Fabrication.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_prix_materiel.java
+/home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/Vente.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/realmodels/V_duree_fabrication.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/V_style_materiel.java
 /home/johan/Documents/MmeBaovola/S3_S5_Menuisier/Johan_S3/src/main/java/models/Style_materiel.java

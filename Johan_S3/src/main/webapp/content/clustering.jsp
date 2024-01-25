@@ -8,6 +8,7 @@
 <div class="content-wrapper">
 
           <div class="row">
+
             <div class="col-md-6 d-flex">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -31,6 +32,7 @@
                 </div>
               </div>
             </div>
+
             <div class="col-md-6 d-flex">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -70,53 +72,54 @@
                 </div>
               </div>
             </div>
+
           </div>
 
+
           <div class="row">
+
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="" id="my-title">Front end</h4>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Front end</th>
-                        <th>Remove front end</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>192.168.0.9:9999</td>
-                        <td><button class="badge badge-danger">Drop</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h4 class="" id="my-title">Chart multiple lines</h4>
+                  <canvas id="chart-multiple-lines" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
             </div>
+
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="" id="my-title">All clustering</h4>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Front end</th>
-                        <th>Back end</th>
-                        <th>Remove back end</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>192.168.0.9:9999</td>
-                        <td>192.168.0.9:9999</td>
-                        <td><button class="badge badge-danger">Drop</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h4 class="" id="my-title">Chart doughnut</h4>
+                  <canvas id="chart-doughnut" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
             </div>
+
           </div>
+
+
+          <div class="row">
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="" id="my-title">Plotly donut</h4>
+                  <div id="plotly-donut" style="width:100%;max-width:700px"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="" id="my-title">Google D3</h4>
+                  <div id="google-chart" style="width:100%; max-width:600px; height:500px;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
 
         </div>
