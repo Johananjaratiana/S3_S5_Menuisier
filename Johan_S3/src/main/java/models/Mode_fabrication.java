@@ -9,8 +9,8 @@ public class Mode_fabrication {
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_reference")
-	private Integer id_reference;
+	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "id_type_employee")
 	private Integer id_type_employee;
@@ -19,7 +19,7 @@ public class Mode_fabrication {
 	private Integer duree;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 	@J_Column(name = "nombre")
 	private Integer nombre;
@@ -27,17 +27,17 @@ public class Mode_fabrication {
 
 
   	public Integer getId() { return id; }
-	public Integer getId_reference() { return id_reference; }
+	public Integer getId_meuble() { return id_meuble; }
 	public Integer getId_type_employee() { return id_type_employee; }
 	public Integer getDuree() { return duree; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 	public Integer getNombre() { return nombre; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setId_type_employee(Integer id_type_employee) { this.id_type_employee = id_type_employee; }
 	public void setDuree(Integer duree) { this.duree = duree; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 	public void setNombre(Integer nombre) { this.nombre = nombre; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{

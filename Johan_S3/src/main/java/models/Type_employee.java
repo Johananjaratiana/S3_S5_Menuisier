@@ -16,19 +16,19 @@ public class Type_employee {
 	private Float taux_horaire;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 
 
   	public Integer getId() { return id; }
 	public String getNom() { return nom; }
 	public Float getTaux_horaire() { return taux_horaire; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setNom(String nom) { this.nom = nom; }
 	public void setTaux_horaire(Float taux_horaire) { this.taux_horaire = taux_horaire; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

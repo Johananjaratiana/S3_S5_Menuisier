@@ -52,7 +52,7 @@
 	private Integer id_commande;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 
   	public Integer getId() { return id; }
@@ -70,7 +70,7 @@
 	public String getNom_produit() { return nom_produit; }
 	public Integer getQuantite() { return quantite; }
 	public Integer getId_commande() { return id_commande; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setId_style(Integer id_style) { this.id_style = id_style; }
@@ -87,7 +87,7 @@
 	public void setNom_produit(String nom_produit) { this.nom_produit = nom_produit; }
 	public void setQuantite(Integer quantite) { this.quantite = quantite; }
 	public void setId_commande(Integer id_commande) { this.id_commande = id_commande; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 
       public List<V_fabrication> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
       	try{

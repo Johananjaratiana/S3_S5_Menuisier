@@ -109,4 +109,12 @@
     };
     var employement_userList = new List('crud-employement', employement_options);
 
+    // CRUD GRADE PARAMS
+    var grade_params_options = {
+      valueNames: [ 'grade', 'year', 'salaire', 'date_' ],
+      page: 5,
+      pagination: true
+    };
+    var grade_params_userList = new List('crud-grade-params', grade_params_options);
+
     </script>

@@ -6,8 +6,8 @@
   import johan.dao.Johan_DaoSQL;
 
   public class V_filtre_produit_by_prix {
-  	@J_Column(name = "id_reference")
-	private Integer id_reference;
+  	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "nom_produit")
 	private String nom_produit;
@@ -34,7 +34,7 @@
 	private String nom_volume;
 
 
-  	public Integer getId_reference() { return id_reference; }
+  	public Integer getId_meuble() { return id_meuble; }
 	public String getNom_produit() { return nom_produit; }
 	public String getNom_categorie() { return nom_categorie; }
 	public Float getLongueur() { return longueur; }
@@ -44,7 +44,7 @@
 	public String getNom_style() { return nom_style; }
 	public String getNom_volume() { return nom_volume; }
 
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setNom_produit(String nom_produit) { this.nom_produit = nom_produit; }
 	public void setNom_categorie(String nom_categorie) { this.nom_categorie = nom_categorie; }
 	public void setLongueur(Float longueur) { this.longueur = longueur; }

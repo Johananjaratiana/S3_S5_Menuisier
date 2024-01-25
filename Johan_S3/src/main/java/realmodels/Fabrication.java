@@ -11,7 +11,7 @@ import models.V_fabrication;
 public class Fabrication {
 
     public static String BuildWhereRequest(models.Fabrication fabrication){
-        return " WHERE id_reference = " + fabrication.getId_reference();
+        return " WHERE id_meuble = " + fabrication.getId_meuble();
     }
 
     public static String GetManquanteOrNoMateriel(models.Fabrication fabrication, List<V_check_left_by_quantite_outils> list_restante){
@@ -32,7 +32,7 @@ public class Fabrication {
             models.Stock stock ;
             for (V_check_left_by_quantite_outils v_check_left_by_quantite_outils : list_restante) {
                 stock = new models.Stock();
-                stock.setId_commande(fabrication.getId());
+                stock.setId_fabrication(fabrication.getId());
                 stock.setId_materiel(v_check_left_by_quantite_outils.getId_materiel());
                 stock.setNombre((-1) * v_check_left_by_quantite_outils.getQuantite() * fabrication.getQuantite());
                 stock.save(false, connection);

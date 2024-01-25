@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import johan.servlet.*;
-import models.Prix_materiel;
-import models.V_reference;
 import realmodels.*;
 import java.sql.*;
 import services.DatabaseConnection;
@@ -252,7 +250,7 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "prix-meuble-insert":
-                    models.Prix_reference prix_meuble = Johan_Servlet.constructByFormView(models.Prix_reference.class,
+                    models.Prix_meuble prix_meuble = Johan_Servlet.constructByFormView(models.Prix_meuble.class,
                             request);
                     prix_meuble.save(false, connection);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-prix-meuble");
@@ -291,9 +289,9 @@ public class GeneralController extends HttpServlet {
 
                 // ----------------------- FILTRE BENEFICE
                 case "benefice-meuble":
-                    realmodels.V_benefice_reference v_benefice_reference = Johan_Servlet
-                            .constructByFormView(realmodels.V_benefice_reference.class, request);
-                    v_benefice_reference.setDefaultDataToView(connection, request);
+                    realmodels.V_benefice_meuble v_benefice_meuble = Johan_Servlet
+                            .constructByFormView(realmodels.V_benefice_meuble.class, request);
+                    v_benefice_meuble.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("intervalle-benefice.jsp").forward(request, response);
                     break;
 
@@ -320,6 +318,30 @@ public class GeneralController extends HttpServlet {
                     Employement.save(connection, request);
                     Employement.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("employement.jsp").forward(request, response);
+                    break;
+                
+                // ----------------------- GRADE EMPLOYEE
+                case "crud-grade-employee":
+                    Grade_employee.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("grade-employee.jsp").forward(request, response);
+                    break;
+
+                case "grade-employee-insert":
+                    models.Grade_employee grade_employee = Johan_Servlet.constructByFormView(models.Grade_employee.class, request);
+                    grade_employee.save(false, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-grade-employee");
+                    break;
+                
+
+                // ----------------------- GRADE PARAMS
+                case "crud-grade-params":
+                    Grade_params.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("grade-params.jsp").forward(request, response);
+                    break;
+
+                case "grade-params-insert":
+                    Grade_params.save(request, connection);
+                    response.sendRedirect("/Johan_S3/Controller?action=crud-grade-params");
                     break;
 
                 default:

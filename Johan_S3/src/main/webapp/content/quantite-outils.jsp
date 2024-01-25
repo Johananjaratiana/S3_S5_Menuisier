@@ -2,7 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="models.*" %>
 <%
-	List<V_reference> references = (List<V_reference>) request.getAttribute("references");
+	List<V_meuble> meubles = (List<V_meuble>) request.getAttribute("meubles");
 	List<V_materiel> materiels = (List<V_materiel>) request.getAttribute("materiels");
 	List<V_quantite_outils> quantite_outils = (List<V_quantite_outils>) request.getAttribute("quantite_outils");
 %>
@@ -18,7 +18,7 @@
 						<div class="form-group">
 							<label for="project">Référence</label>
 							<select name="id_reference" class="form-select" id="project">
-								<% for (V_reference vr : references) { %>
+								<% for (V_meuble vr : meubles) { %>
 									<option value="<%= vr.getId()%>"><%= vr.getNom_produit() + " " + vr.getNom_style() + " " + vr.getNom_volume()%></option>
 								<% } %>
 							</select>

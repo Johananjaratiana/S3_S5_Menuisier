@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/my-style.css">
   <link rel="stylesheet" href="assets/css/pagination.css">
   <link rel="stylesheet" href="assets/css/latest.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="assets/images/logo/image1-1.png" />
 </head>

@@ -9,8 +9,8 @@ public class Duration {
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_reference")
-	private Integer id_reference;
+	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "jour")
 	private Integer jour;
@@ -24,13 +24,13 @@ public class Duration {
 
 
   	public Integer getId() { return id; }
-	public Integer getId_reference() { return id_reference; }
+	public Integer getId_meuble() { return id_meuble; }
 	public Integer getJour() { return jour; }
 	public Integer getHeure() { return heure; }
 	public Integer getStatus() { return status; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setJour(Integer jour) { this.jour = jour; }
 	public void setHeure(Integer heure) { this.heure = heure; }
 	public void setStatus(Integer status) { this.status = status; }

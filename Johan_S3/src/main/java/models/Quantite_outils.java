@@ -9,8 +9,8 @@ public class Quantite_outils {
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_reference")
-	private Integer id_reference;
+	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "id_materiel")
 	private Integer id_materiel;
@@ -24,13 +24,13 @@ public class Quantite_outils {
 
 
   	public Integer getId() { return id; }
-	public Integer getId_reference() { return id_reference; }
+	public Integer getId_meuble() { return id_meuble; }
 	public Integer getId_materiel() { return id_materiel; }
 	public Float getQuantite() { return quantite; }
 	public Integer getStatus() { return status; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
 	public void setQuantite(Float quantite) { this.quantite = quantite; }
 	public void setStatus(Integer status) { this.status = status; }

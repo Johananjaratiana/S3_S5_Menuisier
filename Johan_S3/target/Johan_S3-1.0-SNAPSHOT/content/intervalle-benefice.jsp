@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="models.V_benefice_reference" %>
+<%@ page import="models.V_benefice_meuble" %>
 <%
-	List<V_benefice_reference> filtre_prix_benefice_references = (List<V_benefice_reference>) request.getAttribute("filtre_prix_benefice_references");
+	List<V_benefice_meuble> filtre_prix_benefice_meubles = (List<V_benefice_meuble>) request.getAttribute("filtre_prix_benefice_meubles");
 %>
 <div class="content-wrapper">
 	<div class="row">
@@ -73,7 +73,7 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(V_benefice_reference br : filtre_prix_benefice_references) { %>
+								<% for(V_benefice_meuble br : filtre_prix_benefice_meubles) { %>
 									<tr>
 										<td class="produit"><%=br.getNom_produit()+" "+br.getNom_categorie()+" "+br.getNom_style()+" "+br.getNom_volume()%></td>
 										<td class="style"><%= br.getBenefice()%></td>

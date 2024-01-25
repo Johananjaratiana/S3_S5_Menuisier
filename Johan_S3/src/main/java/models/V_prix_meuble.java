@@ -9,8 +9,8 @@
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_reference")
-	private Integer id_reference;
+	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "prix_vente")
 	private Float prix_vente;
@@ -41,7 +41,7 @@
 
 
   	public Integer getId() { return id; }
-	public Integer getId_reference() { return id_reference; }
+	public Integer getId_meuble() { return id_meuble; }
 	public Float getPrix_vente() { return prix_vente; }
 	public java.sql.Time getDate_() { return date_; }
 	public String getNom_produit() { return nom_produit; }
@@ -53,7 +53,7 @@
 	public Float getHauteur() { return hauteur; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setPrix_vente(Float prix_vente) { this.prix_vente = prix_vente; }
 	public void setDate_(java.sql.Time date_) { this.date_ = date_; }
 	public void setNom_produit(String nom_produit) { this.nom_produit = nom_produit; }

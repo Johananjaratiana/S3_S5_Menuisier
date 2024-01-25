@@ -16,19 +16,19 @@ public class Prix_materiel {
 	private Float prix_unitaire;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 
 
   	public Integer getId() { return id; }
 	public Integer getId_materiel() { return id_materiel; }
 	public Float getPrix_unitaire() { return prix_unitaire; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
 	public void setPrix_unitaire(Float prix_unitaire) { this.prix_unitaire = prix_unitaire; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

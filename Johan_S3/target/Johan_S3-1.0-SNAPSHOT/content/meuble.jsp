@@ -5,7 +5,7 @@
 	List<Style> styles = (List<Style>) request.getAttribute("styles");
 	List<Volume> volumes = (List<Volume>) request.getAttribute("volumes");
 	List<V_produit> produits = (List<V_produit>) request.getAttribute("produits");
-	List<V_reference> references = (List<V_reference>) request.getAttribute("references");
+	List<V_meuble> meubles = (List<V_meuble>) request.getAttribute("meubles");
 %>
 <div class="content-wrapper">
 	<div class="row">
@@ -102,7 +102,7 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(V_reference vr : references) { %>
+								<% for(V_meuble vr : meubles) { %>
 									<tr>
 										<td class="produit"><%= vr.getNom_produit()%></td>
 										<td class="categorie"><%= vr.getNom_categorie()%></td>

@@ -9,26 +9,26 @@ public class Fabrication {
   	@J_Column(name = "id")
 	private Integer id;
 
-	@J_Column(name = "id_reference")
-	private Integer id_reference;
+	@J_Column(name = "id_meuble")
+	private Integer id_meuble;
 
 	@J_Column(name = "quantite")
 	private Integer quantite;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 
 
   	public Integer getId() { return id; }
-	public Integer getId_reference() { return id_reference; }
+	public Integer getId_meuble() { return id_meuble; }
 	public Integer getQuantite() { return quantite; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
 	public void setId(Integer id) { this.id = id; }
-	public void setId_reference(Integer id_reference) { this.id_reference = id_reference; }
+	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setQuantite(Integer quantite) { this.quantite = quantite; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

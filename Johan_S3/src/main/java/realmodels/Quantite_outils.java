@@ -26,7 +26,7 @@ public class Quantite_outils extends models.Quantite_outils {
     }
 
     public static String BuildWhereConstraint(models.Quantite_outils quantite_outil) {
-        return " WHERE id = " + quantite_outil.getId_reference() + " AND id_materiel = "
+        return " WHERE id = " + quantite_outil.getId_meuble() + " AND id_materiel = "
                 + quantite_outil.getId_materiel();
     }
 
@@ -36,8 +36,8 @@ public class Quantite_outils extends models.Quantite_outils {
             if(quantite_outil.getQuantite() == null){
                 throw new Exception("Veuillez insérez une quantité.");
             }
-            models.V_contrainte_style_materiel_reference contrainte = new models.V_contrainte_style_materiel_reference();
-            List<models.V_contrainte_style_materiel_reference> list = contrainte
+            models.V_contrainte_style_materiel_meuble contrainte = new models.V_contrainte_style_materiel_meuble();
+            List<models.V_contrainte_style_materiel_meuble> list = contrainte
                     .GetAll(BuildWhereConstraint(quantite_outil), false, connection);
             if (list.size() == 0) {
                 throw new Exception("On ne peut pas utiliser cette matériels séléctionner dans ce meuble.");

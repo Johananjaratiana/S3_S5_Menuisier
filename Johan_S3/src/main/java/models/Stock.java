@@ -16,24 +16,24 @@ public class Stock {
 	private Float nombre;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
-	@J_Column(name = "id_commande")
-	private Integer id_commande;
+	@J_Column(name = "id_fabrication")
+	private Integer id_fabrication;
 
 
 
   	public Integer getId() { return id; }
 	public Integer getId_materiel() { return id_materiel; }
 	public Float getNombre() { return nombre; }
-	public Object getDate_() { return date_; }
-	public Integer getId_commande() { return id_commande; }
+	public java.sql.Timestamp getDate_() { return date_; }
+	public Integer getId_fabrication() { return id_fabrication; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
 	public void setNombre(Float nombre) { this.nombre = nombre; }
-	public void setDate_(Object date_) { this.date_ = date_; }
-	public void setId_commande(Integer id_commande) { this.id_commande = id_commande; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
+	public void setId_fabrication(Integer id_fabrication) { this.id_fabrication = id_fabrication; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

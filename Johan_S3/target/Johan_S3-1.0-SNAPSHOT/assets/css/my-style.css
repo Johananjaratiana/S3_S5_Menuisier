@@ -3,3 +3,24 @@
     font-size: 17pt;
     text-align: center;
 }
+.my-collapsed{
+    padding: 1rem;
+}
+.my-nav-link{
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: white;
+    letter-spacing: 0.1rem;
+}
+.my-nav-link:hover{
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: white;
+    letter-spacing: 0.2rem;
+}
+.nav-item .my-nav-link i{
+    width: 20px;
+    display: inline-block;
+}

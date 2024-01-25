@@ -16,7 +16,7 @@
 	private Float prix_unitaire;
 
 	@J_Column(name = "date_")
-	private Object date_;
+	private java.sql.Timestamp date_;
 
 	@J_Column(name = "nom_materiel")
 	private String nom_materiel;
@@ -28,14 +28,14 @@
   	public Integer getId() { return id; }
 	public Integer getId_materiel() { return id_materiel; }
 	public Float getPrix_unitaire() { return prix_unitaire; }
-	public Object getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 	public String getNom_materiel() { return nom_materiel; }
 	public Integer getStatus_materiel() { return status_materiel; }
 
 	public void setId(Integer id) { this.id = id; }
 	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
 	public void setPrix_unitaire(Float prix_unitaire) { this.prix_unitaire = prix_unitaire; }
-	public void setDate_(Object date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 	public void setNom_materiel(String nom_materiel) { this.nom_materiel = nom_materiel; }
 	public void setStatus_materiel(Integer status_materiel) { this.status_materiel = status_materiel; }
 
