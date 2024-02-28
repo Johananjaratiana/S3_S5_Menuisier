@@ -1,5 +1,7 @@
 CREATE SEQUENCE "public".categorie_id_seq START WITH 1 INCREMENT BY 1;
 
+CREATE SEQUENCE "public".client_id_seq START WITH 1 INCREMENT BY 1;
+
 CREATE SEQUENCE "public".commande_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE "public".duration_id_seq START WITH 1 INCREMENT BY 1;
@@ -9,6 +11,8 @@ CREATE SEQUENCE "public".duree_fabrication_id_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE "public".employee_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE "public".employement_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE SEQUENCE "public".grade_employee_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE "public".grade_year_id_seq START WITH 1 INCREMENT BY 1;
 
@@ -25,6 +29,8 @@ CREATE SEQUENCE "public".produit_id_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE "public".quantite_outils_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE "public".reference_id_seq START WITH 1 INCREMENT BY 1;
+
+CREATE SEQUENCE "public".sexe_id_seq START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE "public".stock_id_seq START WITH 1 INCREMENT BY 1;
 
@@ -55,14 +61,14 @@ CREATE  TABLE "public".employee (
  );
 
 CREATE  TABLE "public".grade_employee ( 
-	id                   serial  NOT NULL  ,
+	id                   integer DEFAULT nextval('grade_employee_id_seq'::regclass) NOT NULL  ,
 	nom                  varchar  NOT NULL  ,
 	status               integer DEFAULT 0 NOT NULL  ,
 	CONSTRAINT pk_grade_employee PRIMARY KEY ( id )
  );
 
 CREATE  TABLE "public".grade_params ( 
-	id                   serial  NOT NULL  ,
+	id                   integer DEFAULT nextval('grade_year_id_seq'::regclass) NOT NULL  ,
 	id_grade             integer  NOT NULL  ,
 	years                integer  NOT NULL  ,
 	x_fois_taux_salaire  double precision  NOT NULL  ,
@@ -88,6 +94,13 @@ CREATE  TABLE "public".produit (
 	id_categorie         integer  NOT NULL  ,
 	CONSTRAINT pk_produit PRIMARY KEY ( id ),
 	CONSTRAINT fk_produit_categorie FOREIGN KEY ( id_categorie ) REFERENCES "public".categorie( id ) ON DELETE CASCADE ON UPDATE CASCADE 
+ );
+
+CREATE  TABLE "public".sexe ( 
+	id                   integer DEFAULT nextval('sexe_id_seq'::regclass) NOT NULL  ,
+	nom                  varchar  NOT NULL  ,
+	status               integer DEFAULT 0 NOT NULL  ,
+	CONSTRAINT pk_sexe PRIMARY KEY ( id )
  );
 
 CREATE  TABLE "public"."style" ( 
@@ -120,6 +133,18 @@ CREATE  TABLE "public".volume (
 	status               integer DEFAULT 0 NOT NULL  ,
 	nom                  varchar  NOT NULL  ,
 	CONSTRAINT pk_volume PRIMARY KEY ( id )
+ );
+
+CREATE  TABLE "public".client ( 
+	id                   integer DEFAULT nextval('client_id_seq'::regclass) NOT NULL  ,
+	nom                  varchar  NOT NULL  ,
+	prenom               varchar  NOT NULL  ,
+	email                varchar  NOT NULL  ,
+	id_sexe              integer  NOT NULL  ,
+	status               integer DEFAULT 0 NOT NULL  ,
+	date_naissance       date  NOT NULL  ,
+	CONSTRAINT pk_client PRIMARY KEY ( id ),
+	CONSTRAINT fk_client_sexe FOREIGN KEY ( id_sexe ) REFERENCES "public".sexe( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
 
 CREATE  TABLE "public".employement ( 
@@ -182,7 +207,7 @@ CREATE  TABLE "public".prix_meuble (
 	id                   integer DEFAULT nextval('prix_reference_id_seq'::regclass) NOT NULL  ,
 	id_meuble            integer  NOT NULL  ,
 	prix_vente           double precision  NOT NULL  ,
-	date_                time DEFAULT CURRENT_TIME NOT NULL  ,
+	date_                timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL  ,
 	CONSTRAINT pk_prix_reference PRIMARY KEY ( id ),
 	CONSTRAINT fk_prix_reference_reference FOREIGN KEY ( id_meuble ) REFERENCES "public".meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
@@ -197,6 +222,18 @@ CREATE  TABLE "public".quantite_outils (
 	CONSTRAINT unq_quantite_outils UNIQUE ( id_meuble, id_materiel ) ,
 	CONSTRAINT fk_quantite_outils_materiel FOREIGN KEY ( id_materiel ) REFERENCES "public".materiel( id ) ON DELETE CASCADE ON UPDATE CASCADE ,
 	CONSTRAINT fk_quantite_outils_reference FOREIGN KEY ( id_meuble ) REFERENCES "public".meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
+ );
+
+CREATE  TABLE "public".stock_meuble ( 
+	id                   integer DEFAULT nextval('commande_id_seq'::regclass) NOT NULL  ,
+	id_meuble            integer  NOT NULL  ,
+	quantite             integer  NOT NULL  ,
+	date_                timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL  ,
+	id_client            integer    ,
+	status               integer DEFAULT 0 NOT NULL  ,
+	CONSTRAINT pk_commande PRIMARY KEY ( id ),
+	CONSTRAINT fk_stock_meuble_client FOREIGN KEY ( id_client ) REFERENCES "public".client( id ) ON DELETE CASCADE ON UPDATE CASCADE ,
+	CONSTRAINT fk_commande_reference FOREIGN KEY ( id_meuble ) REFERENCES "public".meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
 
 CREATE  TABLE "public".style_materiel ( 
@@ -220,24 +257,15 @@ CREATE  TABLE "public".duration (
 	CONSTRAINT fk_duration_reference FOREIGN KEY ( id_meuble ) REFERENCES "public".meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
 
-CREATE  TABLE "public".fabrication ( 
-	id                   integer DEFAULT nextval('commande_id_seq'::regclass) NOT NULL  ,
-	id_meuble            integer  NOT NULL  ,
-	quantite             integer  NOT NULL  ,
-	date_                timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL  ,
-	CONSTRAINT pk_commande PRIMARY KEY ( id ),
-	CONSTRAINT fk_commande_reference FOREIGN KEY ( id_meuble ) REFERENCES "public".meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
- );
-
-CREATE  TABLE "public".stock ( 
+CREATE  TABLE "public".stock_materiel ( 
 	id                   integer DEFAULT nextval('stock_id_seq'::regclass) NOT NULL  ,
 	id_materiel          integer  NOT NULL  ,
 	nombre               double precision  NOT NULL  ,
 	date_                timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL  ,
 	id_fabrication       integer    ,
 	CONSTRAINT pk_stock PRIMARY KEY ( id ),
-	CONSTRAINT fk_stock_commande FOREIGN KEY ( id_fabrication ) REFERENCES "public".fabrication( id ) ON DELETE CASCADE ON UPDATE CASCADE ,
-	CONSTRAINT fk_stock_materiel FOREIGN KEY ( id_materiel ) REFERENCES "public".materiel( id ) ON DELETE CASCADE ON UPDATE CASCADE 
+	CONSTRAINT fk_stock_materiel FOREIGN KEY ( id_materiel ) REFERENCES "public".materiel( id ) ON DELETE CASCADE ON UPDATE CASCADE ,
+	CONSTRAINT fk_stock_commande FOREIGN KEY ( id_fabrication ) REFERENCES "public".stock_meuble( id ) ON DELETE CASCADE ON UPDATE CASCADE 
  );
 
 CREATE VIEW "public".v_benefice_meuble AS  SELECT r.id,
@@ -260,14 +288,26 @@ CREATE VIEW "public".v_benefice_meuble AS  SELECT r.id,
      LEFT JOIN v_filtre_produit_by_prix prm ON ((prm.id_meuble = r.id)));
 
 CREATE VIEW "public".v_check_left_by_quantite_outils AS  SELECT qo.id,
-    qo.id_meuble AS id_reference,
+    qo.id_meuble,
     qo.id_materiel,
     qo.quantite,
     qo.status,
-    vsr.sum,
+    vsr.reste,
     vsr.nom_materiel
    FROM (quantite_outils qo
-     JOIN v_stock_restante vsr ON ((vsr.id_materiel = qo.id_materiel)));
+     JOIN v_stock_materiel_restante vsr ON ((vsr.id_materiel = qo.id_materiel)));
+
+CREATE VIEW "public".v_client AS  SELECT c.id,
+    c.nom,
+    c.prenom,
+    c.email,
+    c.id_sexe,
+    c.status,
+    c.date_naissance,
+    s.nom AS nom_sexe,
+    s.status AS status_sexe
+   FROM (client c
+     JOIN sexe s ON ((s.id = c.id_sexe)));
 
 CREATE VIEW "public".v_contrainte_style_materiel_meuble AS  SELECT r.id,
     r.id_style,
@@ -296,25 +336,6 @@ CREATE VIEW "public".v_duree_fabrication AS  SELECT df.id,
      JOIN v_meuble r ON ((r.id = df.id_meuble)))
      JOIN type_employee te ON ((te.id = df.id_type_employee)));
 
-CREATE VIEW "public".v_fabrication AS  SELECT r.id,
-    r.id_style,
-    r.id_volume,
-    r.status,
-    r.id_produit,
-    r.nom_style,
-    r.longueur,
-    r.largeur,
-    r.hauteur,
-    r.nom_volume,
-    r.id_categorie,
-    r.nom_categorie,
-    r.nom_produit,
-    c.quantite,
-    c.id AS id_commande,
-    c.date_
-   FROM (fabrication c
-     JOIN v_meuble r ON ((r.id = c.id_meuble)));
-
 CREATE VIEW "public".v_filtre_produit_by_prix AS  SELECT qm.id_meuble,
     max((r.nom_produit)::text) AS nom_produit,
     max((r.nom_categorie)::text) AS nom_categorie,
@@ -329,12 +350,6 @@ CREATE VIEW "public".v_filtre_produit_by_prix AS  SELECT qm.id_meuble,
      JOIN materiel m ON ((m.id = qm.id_materiel)))
      JOIN v_prix_materiel pm ON ((pm.id_materiel = qm.id_materiel)))
   GROUP BY qm.id_meuble;
-
-CREATE VIEW "public".v_full_stock AS  SELECT max(s.id) AS id,
-    s.id_materiel,
-    sum(s.nombre) AS sum
-   FROM stock s
-  GROUP BY s.id_materiel;
 
 CREATE VIEW "public".v_latest_grade_params_insert AS  SELECT grade_params.id_grade,
     max(grade_params.date_) AS max_date
@@ -371,6 +386,14 @@ CREATE VIEW "public".v_meuble AS  SELECT r.id,
      JOIN volume v ON ((v.id = r.id_volume)))
      JOIN produit p ON ((p.id = r.id_produit)))
      JOIN categorie c ON ((p.id_categorie = c.id)));
+
+CREATE VIEW "public".v_nb_vente_par_style_par_mois_current_year AS  SELECT vm.id_style,
+    COALESCE((- sum(sm.quantite)), (0)::bigint) AS nb_vente,
+    EXTRACT(month FROM sm.date_) AS month
+   FROM (stock_meuble sm
+     JOIN v_meuble vm ON ((vm.id = sm.id_meuble)))
+  WHERE ((sm.quantite < 0) AND (EXTRACT(year FROM sm.date_) = EXTRACT(year FROM CURRENT_DATE)))
+  GROUP BY vm.id_style, (EXTRACT(month FROM sm.date_));
 
 CREATE VIEW "public".v_prix_materiel AS  SELECT pm.id,
     pm.id_materiel,
@@ -448,12 +471,43 @@ CREATE VIEW "public".v_real_grade_params AS  SELECT gp.id,
      JOIN v_latest_grade_params_insert subq ON (((gp.id_grade = subq.id_grade) AND (gp.date_ = subq.max_date))))
      RIGHT JOIN grade_employee ge ON ((ge.id = gp.id_grade)));
 
-CREATE VIEW "public".v_stock_restante AS  SELECT vfs.id,
-    vfs.id_materiel,
-    vfs.sum,
-    m.nom AS nom_materiel
-   FROM (v_full_stock vfs
-     JOIN materiel m ON ((m.id = vfs.id_materiel)));
+CREATE VIEW "public".v_statistiques_nb_vente_par_style_par_mois_current_year AS  SELECT swam.month,
+    swam.id_style,
+    swam.nom_style,
+    swam.status_style,
+    COALESCE(nbvpspm.nb_vente, (0)::bigint) AS nb_vente
+   FROM (v_style_with_all_months swam
+     LEFT JOIN v_nb_vente_par_style_par_mois_current_year nbvpspm ON (((nbvpspm.id_style = swam.id_style) AND (nbvpspm.month = (swam.month)::numeric))));
+
+CREATE VIEW "public".v_stock_materiel_restante AS  SELECT vlms.id_materiel,
+    vlms.sum AS reste,
+    m.nom AS nom_materiel,
+    u.id AS id_unite,
+    u.nom AS nom_unite
+   FROM ((( SELECT s.id_materiel,
+            sum(s.nombre) AS sum
+           FROM stock_materiel s
+          GROUP BY s.id_materiel) vlms
+     JOIN materiel m ON ((m.id = vlms.id_materiel)))
+     JOIN unite u ON ((u.id = m.id_unite)));
+
+CREATE VIEW "public".v_stock_meuble_restante AS  SELECT r.id,
+    max(r.id_style) AS id_style,
+    max(r.id_volume) AS id_volume,
+    max(r.status) AS status,
+    max(r.id_produit) AS id_produit,
+    max((r.nom_style)::text) AS nom_style,
+    max(r.longueur) AS longueur,
+    max(r.largeur) AS largeur,
+    max(r.hauteur) AS hauteur,
+    max((r.nom_volume)::text) AS nom_volume,
+    max(r.id_categorie) AS id_categorie,
+    max((r.nom_categorie)::text) AS nom_categorie,
+    max((r.nom_produit)::text) AS nom_produit,
+    COALESCE(sum(c.quantite), (0)::bigint) AS quantite
+   FROM (stock_meuble c
+     RIGHT JOIN v_meuble r ON ((r.id = c.id_meuble)))
+  GROUP BY r.id;
 
 CREATE VIEW "public".v_style_materiel AS  SELECT sm.id,
     s.id AS id_style,
@@ -466,7 +520,18 @@ CREATE VIEW "public".v_style_materiel AS  SELECT sm.id,
      JOIN v_materiel vm ON ((vm.id_materiel = sm.id_materiel)))
      JOIN style s ON ((s.id = sm.id_style)));
 
-CREATE VIEW "public".v_taux_salaire_employe AS  SELECT e.id,
+CREATE VIEW "public".v_style_with_all_months AS  WITH all_months AS (
+         SELECT generate_series(1, 12) AS month
+        )
+ SELECT am.month,
+    s.id AS id_style,
+    s.nom AS nom_style,
+    s.status AS status_style
+   FROM (all_months am
+     JOIN style s ON (true))
+  GROUP BY am.month, s.id;
+
+CREATE VIEW "public".v_taux_salaire_employee AS  SELECT e.id,
     e.nom,
     e.prenom,
     e.status,
@@ -475,19 +540,47 @@ CREATE VIEW "public".v_taux_salaire_employe AS  SELECT e.id,
     te.taux_horaire AS taux_horaire_type,
     emp.date_embauche,
     age((emp.date_embauche)::timestamp with time zone) AS anciennete,
-        CASE
-            WHEN (age((emp.date_embauche)::timestamp with time zone) >= '5 years'::interval) THEN (te.taux_horaire * (3)::double precision)
-            WHEN ((age((emp.date_embauche)::timestamp with time zone) >= '2 years'::interval) AND (age((emp.date_embauche)::timestamp with time zone) < '5 years'::interval)) THEN (te.taux_horaire * (2)::double precision)
-            ELSE te.taux_horaire
-        END AS taux_horaire,
-        CASE
-            WHEN (age((emp.date_embauche)::timestamp with time zone) >= '5 years'::interval) THEN 'expert'::text
-            WHEN ((age((emp.date_embauche)::timestamp with time zone) >= '2 years'::interval) AND (age((emp.date_embauche)::timestamp with time zone) < '5 years'::interval)) THEN 'senior'::text
-            ELSE 'ouvrier'::text
-        END AS grade
-   FROM ((employee e
+    max(gp.x_fois_taux_salaire) AS x_fois_taux_salaire,
+    max((g.nom)::text) AS nom_grade
+   FROM ((((employee e
      JOIN employement emp ON ((e.id = emp.id_employee)))
-     JOIN type_employee te ON ((emp.id_type_employee = te.id)));
+     JOIN type_employee te ON ((emp.id_type_employee = te.id)))
+     LEFT JOIN grade_params gp ON ((((EXTRACT(epoch FROM age((emp.date_embauche)::timestamp with time zone)) / (31536000)::numeric) - (gp.years)::numeric) = ( SELECT min(((EXTRACT(epoch FROM age((emp.date_embauche)::timestamp with time zone)) / (31536000)::numeric) - (gp2.years)::numeric)) AS min
+           FROM grade_params gp2
+          WHERE ((EXTRACT(epoch FROM age((emp.date_embauche)::timestamp with time zone)) / (31536000)::numeric) >= (gp2.years)::numeric)))))
+     JOIN grade_employee g ON ((g.id = gp.id_grade)))
+  GROUP BY e.id, e.nom, e.prenom, e.status, e.date_naissance, te.nom, te.taux_horaire, emp.date_embauche;
+
+CREATE VIEW "public".v_vente AS  SELECT v.id,
+    v.id_meuble,
+    v.id_client,
+    v.quantite,
+    v.date_,
+    v.status,
+    c.nom AS nom_client,
+    c.prenom AS prenom_client,
+    c.email AS email_client,
+    c.id_sexe,
+    s.nom AS nom_sexe,
+    c.status AS status_client,
+    c.date_naissance AS dtn_client,
+    vm.id_style AS id_style_meuble,
+    vm.id_volume AS id_volume_meuble,
+    vm.status AS status_meuble,
+    vm.id_produit AS id_produit_meuble,
+    vm.nom_style AS nom_style_meuble,
+    vm.longueur AS longueur_meuble,
+    vm.largeur AS largeur_meuble,
+    vm.hauteur AS hauteur_meuble,
+    vm.nom_volume AS nom_volume_meuble,
+    vm.id_categorie AS id_categorie_meuble,
+    vm.nom_categorie AS nom_categorie_meuble,
+    vm.nom_produit AS nom_produit_meuble
+   FROM (((stock_meuble v
+     JOIN client c ON ((c.id = v.id_client)))
+     JOIN v_meuble vm ON ((vm.id = v.id_meuble)))
+     JOIN sexe s ON ((s.id = c.id_sexe)))
+  WHERE (v.id_client IS NOT NULL);
 
 INSERT INTO "public".categorie( id, nom, status ) VALUES ( 1, 'Chaise', 0);
 INSERT INTO "public".categorie( id, nom, status ) VALUES ( 3, 'Table', 0);
@@ -510,14 +603,16 @@ INSERT INTO "public".produit( id, nom, status, id_categorie ) VALUES ( 6, 'Canap
 INSERT INTO "public".produit( id, nom, status, id_categorie ) VALUES ( 7, 'Chaise pliante', 0, 1);
 INSERT INTO "public".produit( id, nom, status, id_categorie ) VALUES ( 8, 'Table rustica', 0, 3);
 INSERT INTO "public".produit( id, nom, status, id_categorie ) VALUES ( 10, 'Table brun', 0, 3);
+INSERT INTO "public".sexe( id, nom, status ) VALUES ( 2, 'Homme', 0);
+INSERT INTO "public".sexe( id, nom, status ) VALUES ( 3, 'Femme', 0);
 INSERT INTO "public"."style"( id, nom, status ) VALUES ( 1, 'Royal', 0);
 INSERT INTO "public"."style"( id, nom, status ) VALUES ( 2, 'Scandinave', 0);
 INSERT INTO "public"."style"( id, nom, status ) VALUES ( 3, 'Boheme', 0);
 INSERT INTO "public"."style"( id, nom, status ) VALUES ( 4, 'Shaker', 0);
 INSERT INTO "public"."style"( id, nom, status ) VALUES ( 5, 'Mid-Century Modern', 0);
-INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 4, 'Designer', 90.0, '2024-01-16 04:24:59 PM');
-INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 5, 'Architect', 110.0, '2024-01-16 04:25:06 PM');
-INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 6, 'Menuisier', 50.0, '2024-01-16 04:25:20 PM');
+INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 4, 'Designer', 90000.0, '2024-01-16 04:24:59 PM');
+INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 5, 'Architect', 110000.0, '2024-01-16 04:25:06 PM');
+INSERT INTO "public".type_employee( id, nom, taux_horaire, date_ ) VALUES ( 6, 'Menuisier', 50000.0, '2024-01-16 04:25:20 PM');
 INSERT INTO "public".unite( id, nom, status ) VALUES ( 1, 'Planche', 0);
 INSERT INTO "public".unite( id, nom, status ) VALUES ( 2, 'Unité / Pièce', 0);
 INSERT INTO "public".unite( id, nom, status ) VALUES ( 4, 'kg', 0);
@@ -525,6 +620,12 @@ INSERT INTO "public".unite( id, nom, status ) VALUES ( 3, 'm³', 0);
 INSERT INTO "public".volume( id, longueur, largeur, hauteur, status, nom ) VALUES ( 4, 10.0, 20.0, 30.0, 0, 'PM');
 INSERT INTO "public".volume( id, longueur, largeur, hauteur, status, nom ) VALUES ( 5, 40.0, 35.5, 50.0, 0, 'GM');
 INSERT INTO "public".volume( id, longueur, largeur, hauteur, status, nom ) VALUES ( 6, 65.0, 20.0, 13.0, 0, 'PM');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 2, 'C.', 'Fitahiana', 'fi@gmail.com', 3, 0, '2000-01-10');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 3, 'C.', 'Njara', 'nj@gmail.com', 3, 0, '2001-01-01');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 4, 'C.', 'Henintsoa', 'he@gmail.com', 3, 0, '2004-01-01');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 5, 'C.', 'Manda', 'ma@gmail.com', 2, 0, '1999-01-01');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 6, 'C.', 'Joda', 'jo@gmail.com', 2, 0, '1990-01-01');
+INSERT INTO "public".client( id, nom, prenom, email, id_sexe, status, date_naissance ) VALUES ( 8, 'C.', 'Mandresy', 'mandresy@gmail.com', 2, 0, '1985-02-01');
 INSERT INTO "public".employement( id, id_employee, id_type_employee, date_embauche, status ) VALUES ( 2, 1, 4, '2001-01-01', 0);
 INSERT INTO "public".employement( id, id_employee, id_type_employee, date_embauche, status ) VALUES ( 3, 1, 5, '2022-02-22', 0);
 INSERT INTO "public".employement( id, id_employee, id_type_employee, date_embauche, status ) VALUES ( 5, 5, 4, '2021-01-01', 0);
@@ -540,6 +641,7 @@ INSERT INTO "public".meuble( id, id_style, id_volume, status, id_produit ) VALUE
 INSERT INTO "public".meuble( id, id_style, id_volume, status, id_produit ) VALUES ( 9, 2, 5, 0, 6);
 INSERT INTO "public".meuble( id, id_style, id_volume, status, id_produit ) VALUES ( 10, 3, 4, 0, 8);
 INSERT INTO "public".mode_fabrication( id, id_meuble, id_type_employee, duree, date_, nombre ) VALUES ( 11, 5, 6, 4, '2024-01-18 03:48:07 PM', 4);
+INSERT INTO "public".mode_fabrication( id, id_meuble, id_type_employee, duree, date_, nombre ) VALUES ( 13, 10, 4, 3, '2024-02-02 10:40:42 AM', 1);
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 1, 4, 10.0, '2024-01-11 01:56:17 PM');
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 2, 4, 29.0, '2024-01-11 01:56:23 PM');
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 3, 5, 29.0, '2024-01-11 01:59:25 PM');
@@ -547,32 +649,45 @@ INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALU
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 5, 6, 10.0, '2024-01-16 04:49:37 PM');
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 6, 3, 31.0, '2024-01-16 04:49:47 PM');
 INSERT INTO "public".prix_materiel( id, id_materiel, prix_unitaire, date_ ) VALUES ( 8, 8, 50.0, '2024-01-16 08:02:43 PM');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 1, 5, 100.0, '15:29:34');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 2, 5, 200.0, '15:29:42');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 3, 6, 300.0, '15:29:51');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 4, 8, 400.0, '15:30:01');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 5, 9, 500.0, '15:30:09');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 6, 5, 1000000.0, '16:22:48');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 7, 6, 2000000.0, '16:22:54');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 8, 8, 3000000.0, '16:23:00');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 9, 9, 4580000.0, '16:23:20');
-INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 10, 10, 20000.0, '18:53:42');
+INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 18, 5, 1325000.0, '2024-02-02 11:51:06 AM');
+INSERT INTO "public".prix_meuble( id, id_meuble, prix_vente, date_ ) VALUES ( 14, 10, 950000.0, '2024-02-02 11:46:35 AM');
 INSERT INTO "public".quantite_outils( id, id_meuble, id_materiel, quantite, status ) VALUES ( 24, 5, 4, 10.0, 0);
 INSERT INTO "public".quantite_outils( id, id_meuble, id_materiel, quantite, status ) VALUES ( 26, 5, 5, 15.0, 0);
+INSERT INTO "public".quantite_outils( id, id_meuble, id_materiel, quantite, status ) VALUES ( 29, 10, 3, 23.0, 0);
+INSERT INTO "public".quantite_outils( id, id_meuble, id_materiel, quantite, status ) VALUES ( 31, 10, 6, 46.0, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 12, 5, 3, '2024-01-18 03:58:31 PM', null, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 20, 10, 11, '2024-02-02 11:12:34 AM', null, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 21, 5, 10, '2024-02-02 11:13:12 AM', null, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 22, 5, -3, '2024-02-02 11:18:00 AM', 4, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 23, 10, -5, '2024-02-02 11:18:00 AM', 4, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 24, 10, -3, '2024-02-02 11:19:00 AM', 5, 0);
+INSERT INTO "public".stock_meuble( id, id_meuble, quantite, date_, id_client, status ) VALUES ( 25, 5, -5, '2024-02-02 11:19:00 AM', 5, 0);
 INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 9, 1, 4, 0);
 INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 10, 1, 5, 0);
 INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 11, 1, 6, 0);
 INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 12, 1, 3, 0);
 INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 13, 1, 8, 0);
-INSERT INTO "public".fabrication( id, id_meuble, quantite, date_ ) VALUES ( 12, 5, 3, '2024-01-18 03:58:31 PM');
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 1, 5, 10.0, '2024-01-11 02:22:25 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 2, 5, 12.0, '2024-01-11 02:22:32 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 3, 3, 9.0, '2024-01-11 02:22:39 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 4, 3, 4.0, '2024-01-11 02:22:44 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 5, 3, 7.0, '2024-01-11 03:00:50 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 6, 4, 20.0, '2024-01-11 03:01:07 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 17, 4, 19.0, '2024-01-18 02:58:51 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 18, 5, 23.0, '2024-01-18 03:58:15 PM', null);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 19, 5, -45.0, '2024-01-18 03:58:31 PM', 12);
-INSERT INTO "public".stock( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 20, 4, -30.0, '2024-01-18 03:58:31 PM', 12);
-    
+INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 19, 3, 4, 0);
+INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 20, 3, 5, 0);
+INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 21, 3, 6, 0);
+INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 23, 3, 3, 0);
+INSERT INTO "public".style_materiel( id, id_style, id_materiel, status ) VALUES ( 24, 3, 8, 0);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 1, 5, 10.0, '2024-01-11 02:22:25 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 2, 5, 12.0, '2024-01-11 02:22:32 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 3, 3, 9.0, '2024-01-11 02:22:39 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 4, 3, 4.0, '2024-01-11 02:22:44 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 5, 3, 7.0, '2024-01-11 03:00:50 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 6, 4, 20.0, '2024-01-11 03:01:07 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 17, 4, 19.0, '2024-01-18 02:58:51 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 18, 5, 23.0, '2024-01-18 03:58:15 PM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 19, 5, -45.0, '2024-01-18 03:58:31 PM', 12);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 20, 4, -30.0, '2024-01-18 03:58:31 PM', 12);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 21, 5, 15.0, '2024-01-31 08:37:05 AM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 22, 6, 10000.0, '2024-02-02 10:45:41 AM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 23, 3, 46700.0, '2024-02-02 10:45:56 AM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 24, 5, 30800.0, '2024-02-02 10:46:18 AM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 25, 4, 60000.0, '2024-02-02 10:46:31 AM', null);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 26, 3, -253.0, '2024-02-02 11:12:34 AM', 20);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 27, 6, -506.0, '2024-02-02 11:12:35 AM', 20);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 28, 5, -150.0, '2024-02-02 11:13:13 AM', 21);
+INSERT INTO "public".stock_materiel( id, id_materiel, nombre, date_, id_fabrication ) VALUES ( 29, 4, -100.0, '2024-02-02 11:13:13 AM', 21);
