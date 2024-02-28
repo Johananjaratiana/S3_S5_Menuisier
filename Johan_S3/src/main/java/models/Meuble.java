@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -29,11 +30,11 @@ public class Meuble {
 	public Integer getStatus() { return status; }
 	public Integer getId_produit() { return id_produit; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_style(Integer id_style) { this.id_style = id_style; }
-	public void setId_volume(Integer id_volume) { this.id_volume = id_volume; }
-	public void setStatus(Integer status) { this.status = status; }
-	public void setId_produit(Integer id_produit) { this.id_produit = id_produit; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_style(Integer id_style) throws Exception { this.id_style = id_style; }
+	public void setId_volume(Integer id_volume) throws Exception { this.id_volume = id_volume; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
+	public void setId_produit(Integer id_produit) throws Exception { this.id_produit = id_produit; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

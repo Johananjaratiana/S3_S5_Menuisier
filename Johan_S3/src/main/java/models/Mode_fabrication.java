@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -33,12 +34,12 @@ public class Mode_fabrication {
 	public java.sql.Timestamp getDate_() { return date_; }
 	public Integer getNombre() { return nombre; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
-	public void setId_type_employee(Integer id_type_employee) { this.id_type_employee = id_type_employee; }
-	public void setDuree(Integer duree) { this.duree = duree; }
-	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
-	public void setNombre(Integer nombre) { this.nombre = nombre; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_meuble(Integer id_meuble) throws Exception { this.id_meuble = id_meuble; }
+	public void setId_type_employee(Integer id_type_employee) throws Exception { this.id_type_employee = id_type_employee; }
+	public void setDuree(Integer duree) throws Exception { this.duree = duree; }
+	public void setDate_(java.sql.Timestamp date_) throws Exception { this.date_ = date_; }
+	public void setNombre(Integer nombre) throws Exception { this.nombre = nombre; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

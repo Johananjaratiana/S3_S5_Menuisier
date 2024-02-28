@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -29,11 +30,11 @@ public class Employee {
 	public Integer getStatus() { return status; }
 	public java.sql.Date getDate_naissance() { return date_naissance; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setNom(String nom) { this.nom = nom; }
-	public void setPrenom(String prenom) { this.prenom = prenom; }
-	public void setStatus(Integer status) { this.status = status; }
-	public void setDate_naissance(java.sql.Date date_naissance) { this.date_naissance = date_naissance; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setNom(String nom) throws Exception { this.nom = nom; }
+	public void setPrenom(String prenom) throws Exception { this.prenom = prenom; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
+	public void setDate_naissance(java.sql.Date date_naissance) throws Exception { this.date_naissance = date_naissance; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

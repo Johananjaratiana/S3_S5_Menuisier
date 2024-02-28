@@ -10,7 +10,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="" id="my-title">Nouvelle unité</h4>
+					<h4 class="" id="my-title">Nouvelle volume</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="volume-insert">
 						<div class="form-group">

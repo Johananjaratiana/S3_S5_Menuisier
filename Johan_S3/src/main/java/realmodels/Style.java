@@ -9,12 +9,26 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import johan.servlet.Johan_Servlet;
+
 /**
  *
  * @author hp
  */
 
 public class Style extends models.Style {
+
+    @Override
+    public void setNom(String nom) throws Exception{
+        try{
+            if(nom == null || nom.length() == 0){
+                throw new Exception("Le nom des styles ne peut être vide");
+            }
+            super.setNom(nom);
+        }catch(Exception ex){
+            throw new Exception(ex);
+        }
+    }
 
     public static void setDefaultDataToView(Connection connection, HttpServletRequest request)throws Exception
     {
@@ -31,12 +45,14 @@ public class Style extends models.Style {
         return "Ca existe déjà";
     }
 
-    public static void InsertStyleMateriel(Connection connection,models.Style_materiel style_materiel, HttpServletRequest request) {
+    public static void Save(Connection connection, HttpServletRequest request) {
         try{
-            style_materiel.save(false, connection);
+            Boolean isChildClass = true;
+            Style style = Johan_Servlet.constructByFormView(Style.class, request, isChildClass);
+            style.save(isChildClass, connection);
         }catch(Exception ex){
-            ex.printStackTrace();
-            request.setAttribute("error", BuildErrorStyleMateriel());
+            request.setAttribute("error", ex.getMessage());
         }
     }
+
 }

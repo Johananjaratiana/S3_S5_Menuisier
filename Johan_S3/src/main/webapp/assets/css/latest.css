@@ -1,6 +1,34 @@
 
 .content-wrapper{
-    background : #D5D5D5;
+    animation: slide 60s linear infinite;
+    background-image: url('../images/meubles/living-room-2732939_1280.jpg');
+    /* background-color: black; */
+}
+
+.content-wrapper .row{
+    opacity: 90%;
+}
+
+
+@keyframes slide{
+    to {
+        background-position: 1000px 0;
+    }
+        /* 
+        background-image: url('../images/meubles/apartment-2558277_1280.jpg');
+        background-image: url('../images/meubles/kitchen-1940174_1280.jpg');
+        background-image: url('../images/meubles/bedroom-5664221_1280.jpg');
+        background-image: url('../images/meubles/kitchen-2165756_1280.jpg');
+        background-image: url('../images/meubles/chairs-2181916_1280.jpg');
+        background-image: url('../images/meubles/living-room-2732939_1280.jpg');
+        background-image: url('../images/meubles/chairs-2181919_1280.jpg');
+        background-image: url('../images/meubles/office-730681_1280.jpg');
+        background-image: url('../images/meubles/chairs-2181960_1280.jpg');
+        background-image: url('../images/meubles/tables-2181979_1280.jpg');
+        background-image: url('../images/meubles/chairs-7951845_1280.jpg');
+        background-image: url('../images/meubles/worker-5736096_1280.jpg');
+        background-image: url('../images/meubles/home-2486092_1280.jpg'); 
+        */
 }
 
 .pagination li {

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import johan.servlet.Johan_Servlet;
 
-public class Employee{
+public class Employee extends models.Employee{
 
     public static void setDefaultDataToView(Connection connection, HttpServletRequest request)throws Exception
     {
@@ -24,14 +24,11 @@ public class Employee{
         }
     }
 
-    public static void save(HttpServletRequest request, Connection connection) {
+    public static void Save(HttpServletRequest request, Connection connection) {
         try{
-            models.Employee employee = Johan_Servlet.constructByFormView(models.Employee.class, request);
-            int age = CalculateAge(employee.getDate_naissance());
-            if(age < 18){
-                throw new Exception("Votre âge n` est pas accepté. (" + age + ").");
-            }
-            employee.save(false, connection);
+            Boolean isChildClass = true;
+            Employee employee = Johan_Servlet.constructByFormView(Employee.class, request, isChildClass);
+            employee.save(isChildClass, connection);
         }catch(Exception ex){
             request.setAttribute("error", ex.getMessage());
         }

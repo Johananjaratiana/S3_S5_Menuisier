@@ -15,11 +15,11 @@
 	@J_Column(name = "id_client")
 	private Integer id_client;
 
-	@J_Column(name = "nb")
-	private Integer nb;
+	@J_Column(name = "quantite")
+	private Integer quantite;
 
 	@J_Column(name = "date_")
-	private java.sql.Date date_;
+	private java.sql.Timestamp date_;
 
 	@J_Column(name = "status")
 	private Integer status;
@@ -85,8 +85,8 @@
   	public Integer getId() { return id; }
 	public Integer getId_meuble() { return id_meuble; }
 	public Integer getId_client() { return id_client; }
-	public Integer getNb() { return nb; }
-	public java.sql.Date getDate_() { return date_; }
+	public Integer getQuantite() { return quantite; }
+	public java.sql.Timestamp getDate_() { return date_; }
 	public Integer getStatus() { return status; }
 	public String getNom_client() { return nom_client; }
 	public String getPrenom_client() { return prenom_client; }
@@ -111,8 +111,8 @@
 	public void setId(Integer id) { this.id = id; }
 	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setId_client(Integer id_client) { this.id_client = id_client; }
-	public void setNb(Integer nb) { this.nb = nb; }
-	public void setDate_(java.sql.Date date_) { this.date_ = date_; }
+	public void setQuantite(Integer quantite) { this.quantite = quantite; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 	public void setStatus(Integer status) { this.status = status; }
 	public void setNom_client(String nom_client) { this.nom_client = nom_client; }
 	public void setPrenom_client(String prenom_client) { this.prenom_client = prenom_client; }

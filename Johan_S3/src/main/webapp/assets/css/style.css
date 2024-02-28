@@ -13467,7 +13467,7 @@ input:focus {
   background: linear-gradient(to right, rgba(240, 147, 251, 0.9), rgba(245, 87, 108, 0.9)); }
 
 .sidebar-grdient-dark, .sidebar {
-  background: linear-gradient(to bottom, #4aca6a 0%, #258e07 20%, #9d7d00 100%);
+  background: linear-gradient(to bottom, #005656 0%, #000 20%, #53450c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a008a', endColorstr='#fa0053', GradientType=0 );
   color: #ffffff; }
 
@@ -13484,7 +13484,7 @@ input:focus {
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease; }
   .sidebar .nav {
-    overflow: hidden;
+    overflow: scroll;
     flex-wrap: nowrap;
     flex-direction: column;
     margin-bottom: 60px;
@@ -13714,7 +13714,7 @@ input:focus {
 /* Navbar */
 .navbar {
   font-family: "pt-sans-regular", sans-serif;
-  background: #ffffff;
+  background: linear-gradient(to right, #005656 0%, #000 20%, #53450c 100%);
   -webkit-box-shadow: 0px 8px 74px -21px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 8px 74px -21px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 8px 74px -21px rgba(0, 0, 0, 0.15);
@@ -13728,7 +13728,7 @@ input:focus {
     -moz-transition: width 0.25s ease, background 0.25s ease;
     -ms-transition: width 0.25s ease, background 0.25s ease;
     /* background: #ffffff; */
-    background: #e5ffed;;
+    background: black;
     width: 247px;
     height: 59px; }
     .sidebar-light .navbar .navbar-brand-wrapper {
@@ -13838,7 +13838,7 @@ input:focus {
         .navbar .navbar-menu-wrapper .navbar-nav .nav-item:last-child {
           border-right: none; }
         .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
-          color: inherit;
+          color: white;
           font-size: 0.9375rem;
           margin-left: 1rem;
           margin-right: 1rem;
@@ -14135,7 +14135,7 @@ html {
 
 .container-scroller {
   overflow: hidden; 
-  background-color: #9d7d00;
+  background-color: #53450c;
 }
 
 pre {

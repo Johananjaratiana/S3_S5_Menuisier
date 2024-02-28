@@ -42,6 +42,10 @@ public class V_benefice_meuble extends models.V_benefice_meuble {
         }
     }
 
+    public static String GetFullMeubleName(models.V_benefice_meuble benefice_meuble){
+        return benefice_meuble.getNom_produit() + " " + benefice_meuble.getNom_style() + " " + benefice_meuble.getNom_volume();
+    }
+    
     public Double getMin() {
         return min;
     }

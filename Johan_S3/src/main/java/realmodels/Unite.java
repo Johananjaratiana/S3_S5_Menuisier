@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import johan.servlet.Johan_Servlet;
+
 public class Unite extends models.Unite{
 
     public static void setDefaultDataToView(Connection connection, HttpServletRequest request)throws Exception
@@ -15,6 +17,16 @@ public class Unite extends models.Unite{
             request.setAttribute("unites", unites);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());
+        }
+    }
+
+    public static void Save(Connection connection, HttpServletRequest request) {
+        try{
+            Boolean isChildClass = true;
+            Unite unite = Johan_Servlet.constructByFormView(Unite.class, request, isChildClass);
+            unite.save(isChildClass, connection);
+        }catch(Exception ex){
+            request.setAttribute("error", ex.getMessage());
         }
     }
 

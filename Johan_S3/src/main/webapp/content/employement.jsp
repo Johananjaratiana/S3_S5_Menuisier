@@ -2,7 +2,7 @@
 <%@page import="models.*"%>
 <%@page import="java.util.*"%>
 <% 
-    List<V_taux_salaire_employe> taux_salaire_employees = (List<V_taux_salaire_employe>)request.getAttribute("taux_salaire_employees");
+    List<V_taux_salaire_employee> taux_salaire_employees = (List<V_taux_salaire_employee>)request.getAttribute("taux_salaire_employees");
 	List<Employee> employees = (List<Employee>) request.getAttribute("employees");
 	List<Type_employee> type_employees = (List<Type_employee>)request.getAttribute("type_employees");
 %>
@@ -124,14 +124,14 @@
 							</thead>
 							<!-- IMPORTANT, class="list" have to be at tbody -->
 							<tbody class="list">
-								<% for(V_taux_salaire_employe tse : taux_salaire_employees) { %>
+								<% for(V_taux_salaire_employee tse : taux_salaire_employees) { %>
 									<tr>
 										<td class="nom"><%= tse.getNom() + " " + tse.getPrenom()%></td>
 										<td class="type-employee"><%= tse.getNom_type()%></td>
-										<td class="grade"><%= tse.getGrade()%></td>
+										<td class="grade"><%= tse.getNom_grade()%></td>
 										<td class="age simple-number"><%= realmodels.Employee.CalculateAge(tse.getDate_naissance())%> ans</td>
 										<td class="anciennete"><%= realmodels.Employee.EnglishToFrench(tse.getAnciennete())%></td>
-										<td class="taux-horaire money-number"><%= tse.getTaux_horaire()%></td>
+										<td class="taux-horaire money-number"><%= realmodels.Employement.CalculateRealTauxHoraire(tse)%></td>
 									</tr>
 								<% } %>
 							</tbody>

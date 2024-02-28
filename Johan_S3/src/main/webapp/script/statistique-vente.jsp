@@ -1,5 +1,5 @@
     
-    <script src="assets/js/chart.js"></script>
+    <script src="assets/chart/chart.js"></script>
     <script>
       var homme_part = parseFloat(document.getElementById("homme-part").innerHTML);
       var femme_part = parseFloat(document.getElementById("femme-part").innerHTML);

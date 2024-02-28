@@ -17,9 +17,9 @@
 						<input type="hidden" name="action" value="quantite-outils-insert">
 						<div class="form-group">
 							<label for="project">Référence</label>
-							<select name="id_reference" class="form-select" id="project">
+							<select name="id_meuble" class="form-select" id="project">
 								<% for (V_meuble vr : meubles) { %>
-									<option value="<%= vr.getId()%>"><%= vr.getNom_produit() + " " + vr.getNom_style() + " " + vr.getNom_volume()%></option>
+									<option value="<%= vr.getId()%>"><%= realmodels.Meuble.GetFullName(vr)%></option>
 								<% } %>
 							</select>
 						</div>

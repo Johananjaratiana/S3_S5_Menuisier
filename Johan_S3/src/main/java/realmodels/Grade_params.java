@@ -31,21 +31,26 @@ public class Grade_params extends models.Grade_params {
         }
     }
 
-    public static void save(HttpServletRequest request, Connection connection) {
+    public static void ConstraintException(models.Grade_params grade_params)throws Exception{
         try{
-            models.Grade_params grade_params = Johan_Servlet.constructByFormView(models.Grade_params.class, request);
-            
             if(grade_params.getYears() == null || grade_params.getX_fois_taux_salaire() == null){
                 throw new Exception("Veuillez vérifier les entrées ");
             }
-
             if(grade_params.getYears().intValue() < 0 || grade_params.getX_fois_taux_salaire().intValue() < 0){
                 throw new Exception("Veuillez vérifier les entrées ");
             }
-
-            grade_params.save(false, connection);
         }catch(Exception ex){
-            ex.printStackTrace();
+            throw new Exception(ex);
+        }    
+    }
+
+    public static void Save(HttpServletRequest request, Connection connection) {
+        try{
+            Boolean isChildClass = true;
+            Grade_params grade_params = Johan_Servlet.constructByFormView(Grade_params.class, request, isChildClass);
+            ConstraintException(grade_params);
+            grade_params.save(isChildClass, connection);
+        }catch(Exception ex){
             request.setAttribute("error", ex.getMessage());
         }
     }

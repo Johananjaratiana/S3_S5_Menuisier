@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -25,10 +26,10 @@ public class Prix_materiel {
 	public Float getPrix_unitaire() { return prix_unitaire; }
 	public java.sql.Timestamp getDate_() { return date_; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
-	public void setPrix_unitaire(Float prix_unitaire) { this.prix_unitaire = prix_unitaire; }
-	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_materiel(Integer id_materiel) throws Exception { this.id_materiel = id_materiel; }
+	public void setPrix_unitaire(Float prix_unitaire) throws Exception { this.prix_unitaire = prix_unitaire; }
+	public void setDate_(java.sql.Timestamp date_) throws Exception { this.date_ = date_; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

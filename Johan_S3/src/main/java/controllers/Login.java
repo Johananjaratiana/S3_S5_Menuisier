@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
             if(personne != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("utilisateurConnecte", personne);
-                response.sendRedirect("/Johan_S3/Controller?action=filtre-prix");
+                response.sendRedirect("/Johan_S3/Controller?action=statistique-global");
                 return;
             }else{
                 throw new Exception("Please sign up or verify your password and email");

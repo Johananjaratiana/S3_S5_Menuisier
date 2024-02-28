@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -33,12 +34,12 @@ public class Personne {
 	public String getEmail() { return email; }
 	public String getMdp() { return mdp; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setNom(String nom) { this.nom = nom; }
-	public void setPrenom(String prenom) { this.prenom = prenom; }
-	public void setDtn(java.sql.Date dtn) { this.dtn = dtn; }
-	public void setEmail(String email) { this.email = email; }
-	public void setMdp(String mdp) { this.mdp = mdp; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setNom(String nom) throws Exception { this.nom = nom; }
+	public void setPrenom(String prenom) throws Exception { this.prenom = prenom; }
+	public void setDtn(java.sql.Date dtn) throws Exception { this.dtn = dtn; }
+	public void setEmail(String email) throws Exception { this.email = email; }
+	public void setMdp(String mdp) throws Exception { this.mdp = mdp; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

@@ -9,6 +9,8 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import johan.servlet.Johan_Servlet;
+
 /**
  *
  * @author hp
@@ -24,6 +26,16 @@ public class Sexe extends models.Sexe {
         }catch(Exception ex){
             ex.printStackTrace();
             throw new Exception(ex.getMessage());
+        }
+    }
+
+    public static void Save(Connection connection, HttpServletRequest request) {
+        try{
+            Boolean isChildClass = true;
+            Sexe sexe = Johan_Servlet.constructByFormView(Sexe.class, request, isChildClass);
+            sexe.save(isChildClass, connection);
+        }catch(Exception ex){
+            request.setAttribute("error", ex.getMessage());
         }
     }
 }

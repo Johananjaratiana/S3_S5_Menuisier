@@ -99,8 +99,8 @@
 								<% for(V_real_grade_params rgp : real_grade_params) { %>
 									<tr>
 										<td class="grade"><%= rgp.getNom_grade()%></td>
-										<td class="year"><%= rgp.getYears()%></td>
-										<td class="salaire"><%= rgp.getX_fois_taux_salaire()%></td>
+										<td class="year simple-number"><%= rgp.getYears()%> ans</td>
+										<td class="salaire simple-number"><%= rgp.getX_fois_taux_salaire()%> fois</td>
 										<td class="date_"><%= rgp.getDate_()%></td>
 									</tr>
 								<% } %>

@@ -14,7 +14,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body">
-					<h4 class="" id="my-title">Statistiques</h4>
+					<h4 class="" id="my-title">Statistiques de ventes par sexe</h4>
 					<form class="forms-sample" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="statistique-vente">
                         <div class="form-group">
@@ -27,7 +27,7 @@
                             </select>
                         </div>                                            
                         <br/>
-						<button type="submit" class="btn btn-success mr-2">OK</button>
+						<button type="submit" class="btn btn-success mr-2">Voir</button>
 					</form>
 					</div>
 				</div>
@@ -35,23 +35,33 @@
 		</div>
 
 		<div class="row">
-            <div class="col-md-6">
-                <table class="table">
-                    <!-- IMPORTANT, class="list" have to be at tbody -->
-                    <tbody class="list">
-                        <tr>
-                            <td>Homme</td>
-                            <td><%= statistique_vente.GetHommePart()%> %</td>
-                        </tr>
-                        <tr>
-                            <td>Femme</td>
-                            <td><%= statistique_vente.GetFemmePart()%> %</td>
-                        </tr>
-                    </tbody>
-                </table>                
-            </div>
-            <div class="col-md-6">
-				<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            <div class="col-md-12">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body row">
+                            <table class="table table-bordered col-2 offset-2">
+                                <!-- IMPORTANT, class="list" have to be at tbody -->
+                                <tbody class="list">
+                                    <tr>
+                                        <th>Sexe</th>
+                                        <th>Parité</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Homme</td>
+                                        <td><span class="money-number"><%= statistique_vente.GetHommePart()%></span> %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Femme</td>
+                                        <td><span class="money-number"><%= statistique_vente.GetFemmePart()%></span> %</td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+                            <div class="col-6 offset-2">
+                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                            </div>              
+                        </div>
+                    </div>
+                </div>
             </div>
 		</div>
 	</div>

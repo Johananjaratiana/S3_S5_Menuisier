@@ -9,6 +9,8 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import johan.servlet.Johan_Servlet;
+
 /**
  *
  * @author hp
@@ -24,6 +26,16 @@ public class Grade_employee extends models.Grade_employee {
         }catch(Exception ex){
             ex.printStackTrace();
             throw new Exception(ex.getMessage());
+        }
+    }
+
+    public static void Save(Connection connection, HttpServletRequest request) {
+        try{
+            Boolean isChildClass = true;
+            Grade_employee grade_employee = Johan_Servlet.constructByFormView(Grade_employee.class, request, isChildClass);
+            grade_employee.save(isChildClass, connection);
+        }catch(Exception ex){
+            request.setAttribute("error", ex.getMessage());
         }
     }
 }

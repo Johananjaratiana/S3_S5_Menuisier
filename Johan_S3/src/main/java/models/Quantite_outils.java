@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -29,11 +30,11 @@ public class Quantite_outils {
 	public Float getQuantite() { return quantite; }
 	public Integer getStatus() { return status; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
-	public void setId_materiel(Integer id_materiel) { this.id_materiel = id_materiel; }
-	public void setQuantite(Float quantite) { this.quantite = quantite; }
-	public void setStatus(Integer status) { this.status = status; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_meuble(Integer id_meuble) throws Exception { this.id_meuble = id_meuble; }
+	public void setId_materiel(Integer id_materiel) throws Exception { this.id_materiel = id_materiel; }
+	public void setQuantite(Float quantite) throws Exception { this.quantite = quantite; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

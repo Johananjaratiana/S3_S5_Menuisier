@@ -16,7 +16,7 @@
 	private Float prix_vente;
 
 	@J_Column(name = "date_")
-	private java.sql.Time date_;
+	private java.sql.Timestamp date_;
 
 	@J_Column(name = "nom_produit")
 	private String nom_produit;
@@ -43,7 +43,7 @@
   	public Integer getId() { return id; }
 	public Integer getId_meuble() { return id_meuble; }
 	public Float getPrix_vente() { return prix_vente; }
-	public java.sql.Time getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 	public String getNom_produit() { return nom_produit; }
 	public String getNom_categorie() { return nom_categorie; }
 	public String getNom_style() { return nom_style; }
@@ -55,7 +55,7 @@
 	public void setId(Integer id) { this.id = id; }
 	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
 	public void setPrix_vente(Float prix_vente) { this.prix_vente = prix_vente; }
-	public void setDate_(java.sql.Time date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 	public void setNom_produit(String nom_produit) { this.nom_produit = nom_produit; }
 	public void setNom_categorie(String nom_categorie) { this.nom_categorie = nom_categorie; }
 	public void setNom_style(String nom_style) { this.nom_style = nom_style; }

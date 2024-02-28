@@ -75,8 +75,8 @@
 							<tbody class="list">
 								<% for(V_benefice_meuble br : filtre_prix_benefice_meubles) { %>
 									<tr>
-										<td class="produit"><%=br.getNom_produit()+" "+br.getNom_categorie()+" "+br.getNom_style()+" "+br.getNom_volume()%></td>
-										<td class="style"><%= br.getBenefice()%></td>
+										<td class="nom"><%=br.getNom_produit()+" "+br.getNom_categorie()+" "+br.getNom_style()+" "+br.getNom_volume()%></td>
+										<td class="prix simple-number"><span class="money-number"><%= br.getBenefice()%></span> Ar</td>
 									</tr>
 								<% } %>
 							</tbody>

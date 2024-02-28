@@ -20,9 +20,9 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-12 control-label">Meuble</label>
 							<div class="col-sm-10">
-							<select class= "form-control" name="id_reference">
-								<% for(V_meuble r : meubles){ %>
-									<option value="<%=r.getId()%>"><%=r.getNom_produit()+" "+r.getNom_categorie()+" "+r.getNom_style()+" "+r.getNom_volume()%></option>
+							<select class= "form-control" name="id_meuble">
+								<% for(V_meuble vr : meubles){ %>
+									<option value="<%=vr.getId()%>"><%= realmodels.Meuble.GetFullName(vr)%></option>
 								<% } %>
 							</select>
 							</div>
@@ -62,7 +62,7 @@
 			<div class="col-12 grid-margin">
 				<div class="card">
 					<div class="card-body" style="min-height: 520px;">
-						<h4 class="" id="my-title">Durée par employée pendant la fab.</h4>
+						<h4 class="" id="my-title">Durée de travail par groupe d` employée</h4>
 
 						<div id="crud-produit">
 							<div class="row">
@@ -77,7 +77,7 @@
 							<table class="table">
 							<thead>
 								<th>
-									<span>Nom</span>
+									<span>Meuble</span>
 									<button class="sort btn" style="color: green;" data-sort="produit">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
@@ -85,7 +85,7 @@
 									</button>
 								</th>
 								<th>
-									<span>Type employee</span>
+									<span>Groupe d` employée</span>
 									<button class="sort btn" style="color: green;" data-sort="nom">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
@@ -93,7 +93,7 @@
 									</button>
 								</th>
 								<th>
-									<span>Nomber d` employée</span>
+									<span>Nombre</span>
 									<button class="sort btn" style="color: green;" data-sort="nombre">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
 											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
@@ -113,10 +113,10 @@
 							<tbody class="list">
 								<% for(V_duree_fabrication df : duree_fabrications) { %>
 									<tr>
-										<td class="produit"><%=df.getNom_produit()+" "+df.getNom_categorie()+" "+df.getNom_style()+" "+df.getNom_volume()%></td>
+										<td class="produit"><%=df.getNom_produit()+" "+df.getNom_style()+" "+df.getNom_volume()%></td>
 										<td class="nom"><%= df.getNom_type_employee()%></td>
-										<td class="nombre simple-number"><%= df.getNombre()%></td>
-										<td class="duree simple-number"><%= df.getDuree()%></td>
+										<td class="nombre simple-number"><%= df.getNombre()%> personne(s)</td>
+										<td class="duree simple-number"><%= df.getDuree()%> heure(s)</td>
 									</tr>
 								<% } %>
 							</tbody>

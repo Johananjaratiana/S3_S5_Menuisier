@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -16,19 +17,19 @@ public class Prix_meuble {
 	private Float prix_vente;
 
 	@J_Column(name = "date_")
-	private java.sql.Time date_;
+	private java.sql.Timestamp date_;
 
 
 
   	public Integer getId() { return id; }
 	public Integer getId_meuble() { return id_meuble; }
 	public Float getPrix_vente() { return prix_vente; }
-	public java.sql.Time getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
-	public void setPrix_vente(Float prix_vente) { this.prix_vente = prix_vente; }
-	public void setDate_(java.sql.Time date_) { this.date_ = date_; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_meuble(Integer id_meuble) throws Exception { this.id_meuble = id_meuble; }
+	public void setPrix_vente(Float prix_vente) throws Exception { this.prix_vente = prix_vente; }
+	public void setDate_(java.sql.Timestamp date_) throws Exception { this.date_ = date_; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -25,10 +26,10 @@ public class Produit {
 	public Integer getStatus() { return status; }
 	public Integer getId_categorie() { return id_categorie; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setNom(String nom) { this.nom = nom; }
-	public void setStatus(Integer status) { this.status = status; }
-	public void setId_categorie(Integer id_categorie) { this.id_categorie = id_categorie; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setNom(String nom) throws Exception { this.nom = nom; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
+	public void setId_categorie(Integer id_categorie) throws Exception { this.id_categorie = id_categorie; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

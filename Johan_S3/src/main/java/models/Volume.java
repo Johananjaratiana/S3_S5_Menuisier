@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -33,12 +34,12 @@ public class Volume {
 	public Integer getStatus() { return status; }
 	public String getNom() { return nom; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setLongueur(Float longueur) { this.longueur = longueur; }
-	public void setLargeur(Float largeur) { this.largeur = largeur; }
-	public void setHauteur(Float hauteur) { this.hauteur = hauteur; }
-	public void setStatus(Integer status) { this.status = status; }
-	public void setNom(String nom) { this.nom = nom; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setLongueur(Float longueur) throws Exception { this.longueur = longueur; }
+	public void setLargeur(Float largeur) throws Exception { this.largeur = largeur; }
+	public void setHauteur(Float hauteur) throws Exception { this.hauteur = hauteur; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
+	public void setNom(String nom) throws Exception { this.nom = nom; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

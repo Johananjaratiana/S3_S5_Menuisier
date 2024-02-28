@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.Exception;
 import java.util.List;
 import java.sql.*;
 import johan.dao.annotation.*;
@@ -29,11 +30,11 @@ public class Duration {
 	public Integer getHeure() { return heure; }
 	public Integer getStatus() { return status; }
 
-	public void setId(Integer id) { this.id = id; }
-	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
-	public void setJour(Integer jour) { this.jour = jour; }
-	public void setHeure(Integer heure) { this.heure = heure; }
-	public void setStatus(Integer status) { this.status = status; }
+	public void setId(Integer id) throws Exception { this.id = id; }
+	public void setId_meuble(Integer id_meuble) throws Exception { this.id_meuble = id_meuble; }
+	public void setJour(Integer jour) throws Exception { this.jour = jour; }
+	public void setHeure(Integer heure) throws Exception { this.heure = heure; }
+	public void setStatus(Integer status) throws Exception { this.status = status; }
 
     public Long save(Boolean isChildClass, Connection connection) throws Exception{
     	try{

@@ -17,7 +17,7 @@
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-12 control-label">Meuble</label>
 								<div class="col-sm-10">
-								<select class= "form-control" name="id_reference">
+								<select class= "form-control" name="id_meuble">
 									<% for(V_meuble r : meubles){ %>
 										<option value="<%=r.getId()%>"><%=r.getNom_produit()+" "+r.getNom_categorie()+" "+r.getNom_style()+" "+r.getNom_volume()%></option>
 									<% } %>
@@ -78,8 +78,8 @@
 							<tbody class="list">
 								<% for(V_prix_meuble pm : prix_meubles) { %>
 									<tr>
-										<td class="produit"><%=pm.getNom_produit()+" "+pm.getNom_categorie()+" "+pm.getNom_style()+" "+pm.getNom_volume()%></td>
-										<td class="categorie"><%= pm.getPrix_vente()%></td>
+										<td class="nom"><%=pm.getNom_produit() + " " + pm.getNom_style() + " " + pm.getNom_volume()%></td>
+										<td class="prix simple-number"><span class="money-number"><%= pm.getPrix_vente()%></span> Ar</td>
 									</tr>
 								<% } %>
 							</tbody>

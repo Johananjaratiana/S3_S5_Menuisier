@@ -3,7 +3,7 @@
 <%@ page import="models.*" %>
 <%
 	List<V_vente> ventes = (List<V_vente>) request.getAttribute("ventes");
-	List<Client> clients = (List<Client>) request.getAttribute("clients");
+	List<V_client> clients = (List<V_client>) request.getAttribute("clients");
 	List<V_meuble> meubles = (List<V_meuble>) request.getAttribute("meubles");
 %>
 <div class="content-wrapper">
@@ -13,43 +13,71 @@
 				<div class="card">
 					<div class="card-body">
 					<h4 class="" id="my-title">Nouvelle vente</h4>
-					<form class="form-horizontal" action="/Johan_S3/Controller" method="post">
+					<form id="idForm" class="form-horizontal" action="/Johan_S3/Controller" method="post">
 						<input type="hidden" name="action" value="vente-insert">
 
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-12 control-label">Client</label>
-							<select class= "form-control" name="id_client">
-								<% for(Client c : clients){ %>
-									<option value="<%=c.getId()%>"><%=c.getNom()+" "+c.getPrenom()%></option>
-								<% } %>
-							</select>
-						</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="offset-4" colspan="4" id="my-title">
+										<button
+											onclick="addLine('idForm', 'idParent', 'idChild')"
+											class="btn btn-success" style="height: 55px; border-radius: 100%;">
+											<h3>+</h3>
+										</button>
+									</th>
+								</tr>
+								<tr>
+									<th>Client</th>
+									<th>Meuble</th>
+									<th>Quantité</th>
+									<th>Date de vente</th>
+								</tr>
+							</thead>
+							<tbody id="idParent">
+								<tr>
+									<td>
+										<div class="form-group">
+											<select class="form-control" name="id_client">
+											<% for(V_client c : clients){ %>
+											<option value="<%=c.getId()%>"><%= realmodels.Client.GetFullName(c)%></option>
+											<% } %>
+											</select>
+										</div>
+									</td>
+								</tr>
+								<tr id="idChild" style="display: none;">
+									<td></td>
+									<td>
+										<div class="form-group">
+											<select class="form-control" name="id_meuble">
+											<% for(V_meuble vm : meubles){ %>
+											<option value="<%=vm.getId()%>"><%= realmodels.Meuble.GetFullName(vm)%></option>
+											<% } %>
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="form-group">
+											<div class="col-sm-10">
+											<input class="form-control" name="quantite" />
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="form-group">
+											<div class="col-sm-10">
+											<input type="datetime-local" class="form-control currentDateTime" name="date_" />
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-12 control-label">Meuble</label>
-							<select class= "form-control" name="id_meuble">
-								<% for(V_meuble vm : meubles){ %>
-									<option value="<%=vm.getId()%>"><%= realmodels.Meuble.GetFullName(vm)%></option>
-								<% } %>
-							</select>
-						</div>
-
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-12 control-label">Nombre</label>
-							<div class="col-sm-10">
-								<input class="form-control" name="nb"/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-12 control-label">Date de vente</label>
-							<div class="col-sm-10">
-								<input type="date" class= "form-control" name="date_"/>
-							</div>
-						</div>
 
 						<button type="reset" class="btn btn-light offset-md-5">Reset</button>
-						<button type="submit" class="btn btn-success mr-2">Ajouter</button>
+						<button onclick="removeElementById('idChild')" type="submit" class="btn btn-success mr-2">Ajouter</button>
 					</form>
 
 					</div>
@@ -115,7 +143,7 @@
 										<td class="meuble"><%= realmodels.Vente.GetMeubleFullName(v)%></td>
 										<td class="client"><%= realmodels.Vente.GetClientFullName(v)%></td>
 										<td class="sexe"><%= v.getNom_sexe()%></td>
-										<td class="nombre"><%= v.getNb()%></td>
+										<td class="nombre simple-number"><%= (-1) * v.getQuantite()%></td>
 									</tr>
 								<% } %>
 							</tbody>

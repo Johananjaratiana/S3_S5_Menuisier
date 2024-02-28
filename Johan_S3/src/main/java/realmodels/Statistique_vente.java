@@ -25,8 +25,8 @@ public class Statistique_vente {
 
     public static void SetStatVente(HttpServletRequest request, Connection connection) throws Exception{
         try{
-            Statistique_vente statistique_vente = Johan_Servlet.constructByFormView(Statistique_vente.class, request);
-            statistique_vente = statistique_vente.Getstat();
+            Statistique_vente statistique_vente = Johan_Servlet.constructByFormView(Statistique_vente.class, request, true);
+            statistique_vente = statistique_vente.Getstat(connection);
             request.setAttribute("statistique_vente", statistique_vente);
         }catch(Exception ex){
             request.setAttribute("statistique_vente", new Statistique_vente());
@@ -34,25 +34,25 @@ public class Statistique_vente {
         }
     }
 
-    public Statistique_vente Getstat()throws Exception{
+    public Statistique_vente Getstat(Connection connection)throws Exception{
         try{
-            if(this.getId_meuble() == null || this.getId_meuble().intValue() < 0)return Statistique_vente.GetGlobal();
-            return Statistique_vente.GetByMeubleId(this.getId_meuble());
+            if(this.getId_meuble() == null || this.getId_meuble().intValue() < 0)return Statistique_vente.GetGlobal(connection);
+            return Statistique_vente.GetByMeubleId(connection, this.getId_meuble());
         }catch(Exception ex){
             ex.printStackTrace();
             throw new Exception(ex.getMessage());
         }
     }
 
-    public static Statistique_vente GetGlobal() throws Exception {
+    public static Statistique_vente GetGlobal(Connection connection) throws Exception {
         Statistique_vente statistique_vente = new Statistique_vente();
 
-        try (Connection connection = DatabaseConnection.GetConnection()) {
+        try {
             String sql = "SELECT \n" + //
-                    "    COALESCE(SUM(nb),-1) as total,\n" + //
-                    "    COALESCE((SELECT SUM(nb) from v_vente where id_sexe = 2 ), 0) as nb_homme,\n" + //
-                    "    COALESCE((SELECT SUM(nb) from v_vente where id_sexe = 3 ), 0) as nb_femme\n" + //
-                    "    from vente";
+                    "    -SUM(quantite) as total,\n" + //
+                    "    COALESCE((SELECT -SUM(quantite) from v_vente where id_sexe = 2 ), 0) as nb_homme,\n" + //
+                    "    COALESCE((SELECT -SUM(quantite) from v_vente where id_sexe = 3 ), 0) as nb_femme\n" + //
+                    "    FROM stock_meuble WHERE quantite < 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -69,16 +69,16 @@ public class Statistique_vente {
         return statistique_vente;
     }
 
-    public static Statistique_vente GetByMeubleId(Integer id_meuble) throws Exception {
+    public static Statistique_vente GetByMeubleId(Connection connection, Integer id_meuble) throws Exception {
         Statistique_vente statistique_vente = new Statistique_vente();
 
-        try (Connection connection = DatabaseConnection.GetConnection()) {
+        try {
             String sql = "SELECT \n" + //
-                    "    COALESCE(SUM(nb),-1) as total,\n" + //
-                    "    COALESCE((SELECT SUM(nb) from v_vente where id_sexe = 2 and id_meuble = ? ), 0) as nb_homme,\n" + //
-                    "    COALESCE((SELECT SUM(nb) from v_vente where id_sexe = 3 and id_meuble = ? ), 0) as nb_femme\n" + //
-                    "    from vente\n" + //
-                    "    where id_meuble = ?";
+                    "    -SUM(quantite) as total,\n" + //
+                    "    COALESCE((SELECT -SUM(quantite) from v_vente where id_sexe = 2 and id_meuble = ? ), 0) as nb_homme,\n" + //
+                    "    COALESCE((SELECT -SUM(quantite) from v_vente where id_sexe = 3 and id_meuble = ? ), 0) as nb_femme\n" + //
+                    "    from stock_meuble\n" + //
+                    "    where id_meuble = ? and quantite < 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, id_meuble);

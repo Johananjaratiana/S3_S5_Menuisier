@@ -22,8 +22,8 @@ public class Client extends models.Client {
         try{
             Sexe.setDefaultDataToView(connection, request);
 
-            Client c = new Client();
-            List<models.Client> clients = c.GetAll("", false, connection);
+            models.V_client c = new models.V_client();
+            List<models.V_client> clients = c.GetAll("", false, connection);
             request.setAttribute("clients", clients);
         }catch(Exception ex){
             ex.printStackTrace();
@@ -31,13 +31,17 @@ public class Client extends models.Client {
         }
     }
 
-    public static void save(HttpServletRequest request, Connection connection) {
+    public static void Save(HttpServletRequest request, Connection connection) {
         try{
-            models.Client client = Johan_Servlet.constructByFormView(models.Client.class, request);
-            client.save(false, connection);
+            Boolean isChildClass = true;
+            Client client = Johan_Servlet.constructByFormView(Client.class, request, isChildClass);
+            client.save(isChildClass, connection);
         }catch(Exception ex){
-            ex.printStackTrace();
             request.setAttribute("error", ex.getMessage());
         }
+    }
+
+    public static String GetFullName(models.V_client client){
+        return client.getNom() + " " + client.getPrenom(); 
     }
 }

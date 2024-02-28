@@ -10,14 +10,14 @@
 	private Integer id_meuble;
 
 	@J_Column(name = "date_")
-	private java.sql.Time date_;
+	private java.sql.Timestamp date_;
 
 
   	public Integer getId_meuble() { return id_meuble; }
-	public java.sql.Time getDate_() { return date_; }
+	public java.sql.Timestamp getDate_() { return date_; }
 
 	public void setId_meuble(Integer id_meuble) { this.id_meuble = id_meuble; }
-	public void setDate_(java.sql.Time date_) { this.date_ = date_; }
+	public void setDate_(java.sql.Timestamp date_) { this.date_ = date_; }
 
       public List<V_latest_insert_prix_meuble> GetAll(String addRequest, Boolean isChildClass, Connection connection) throws Exception{
       	try{

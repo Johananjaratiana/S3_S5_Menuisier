@@ -4,9 +4,11 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Mode_fabrication {
+import johan.servlet.Johan_Servlet;
 
-    public static void InsertModeFabrication(models.Mode_fabrication mode_fabrication,Connection connection, HttpServletRequest request) throws Exception{
+public class Mode_fabrication extends models.Mode_fabrication{
+    
+    public static void ConstraintException(models.Mode_fabrication mode_fabrication) throws Exception{
         try{
             if(mode_fabrication.getNombre() == null){
                 throw new Exception("Le nombre de personne qui doit travailler doit avoir une valeur.");
@@ -18,7 +20,17 @@ public class Mode_fabrication {
             }else if(mode_fabrication.getDuree().intValue() < 0){
                 throw new Exception("La durée de travail ne peut pas être négatif.");
             }
-            mode_fabrication.save(false, connection);
+        }catch(Exception ex){
+            throw new Exception(ex);
+        }
+    }
+
+    public static void Save(Connection connection, HttpServletRequest request) {
+        try{
+            Boolean isChildClass = true;
+            Mode_fabrication mode_fabrication = Johan_Servlet.constructByFormView(Mode_fabrication.class, request, isChildClass);
+            ConstraintException(mode_fabrication);
+            mode_fabrication.save(isChildClass, connection);
         }catch(Exception ex){
             request.setAttribute("error", ex.getMessage());
         }

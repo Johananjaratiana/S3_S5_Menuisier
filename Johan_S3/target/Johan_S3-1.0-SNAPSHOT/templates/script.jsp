@@ -9,9 +9,10 @@
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/list.js"></script>
+  <script src="assets/js/input-line-copy.js"></script>
+  <script src="assets/js/default-date-value.js"></script>
   <script src="assets/js/numeral.min.js"></script>
   <script src="assets/js/number-formatter.js">
-  </script>
   <script>
     // CRUD TEMPLATE
     var template_options = {
@@ -101,6 +102,14 @@
     };
     var materiel_userList = new List('crud-formule-materiel', materiel_options);
 
+    // CRUD EMPLOYEE
+    var employee_options = {
+      valueNames: [ 'nom', 'prenom', 'dtn', 'age' ],
+      page: 5,
+      pagination: true
+    };
+    var employee_userList = new List('crud-employee', employee_options);
+
     // CRUD EMPLOYEMENT
     var employement_options = {
       valueNames: [ 'nom', 'type-employee',  'grade', 'age', 'anciennete', 'taux-horaire' ],
@@ -116,5 +125,29 @@
       pagination: true
     };
     var grade_params_userList = new List('crud-grade-params', grade_params_options);
+
+    // CRUD CLIENT
+    var client_options = {
+      valueNames: [ 'nom', 'sexe', 'email', 'age' ],
+      page: 5,
+      pagination: true
+    };
+    var client_userList = new List('crud-client', client_options);
+
+    // CRUD STOCK MATERIEL
+    var stock_materiel_options = {
+      valueNames: [ 'materiel', 'reste', 'unite' ],
+      page: 5,
+      pagination: true
+    };
+    var stock_materiel_userList = new List('crud-stock-materiel', stock_materiel_options);
+
+    // CRUD TYPE EMPLOYEE
+    var type_employee_options = {
+      valueNames: [ 'nom', 'taux' ],
+      page: 5,
+      pagination: true
+    };
+    var type_employee_userList = new List('crud-type-employee', type_employee_options);
 
     </script>

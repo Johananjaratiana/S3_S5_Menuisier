@@ -64,9 +64,9 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "categorie-insert":
-                    models.Categorie cat = Johan_Servlet.constructByFormView(models.Categorie.class, request);
-                    cat.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-categorie");
+                    Categorie.Save(connection, request);
+                    Categorie.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("categorie.jsp").forward(request, response);
                     break;
 
                 // ----------------------- STYLE
@@ -76,9 +76,9 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "style-insert":
-                    models.Style style = Johan_Servlet.constructByFormView(models.Style.class, request);
-                    style.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-style");
+                    Style.Save(connection, request);
+                    Style.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("style.jsp").forward(request, response);
                     break;
 
                 // ----------------------- STYLE
@@ -88,9 +88,9 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "unite-insert":
-                    models.Unite unite = Johan_Servlet.constructByFormView(models.Unite.class, request);
-                    unite.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-unite");
+                    Unite.Save(connection, request);
+                    Unite.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("unite.jsp").forward(request, response);
                     break;
 
                 // ----------------------- VOLUME
@@ -100,89 +100,72 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "volume-insert":
-                    models.Volume volume = Johan_Servlet.constructByFormView(models.Volume.class, request);
-                    volume.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-volume");
+                    Volume.Save(connection, request);
+                    Volume.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("volume.jsp").forward(request, response);
                     break;
 
                 // ----------------------- MATERIEL
                 case "crud-materiel":
-                    Unite.setDefaultDataToView(connection, request);
                     Materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("materiel.jsp").forward(request, response);
                     break;
 
                 case "materiel-insert":
-                    models.Materiel materiel = Johan_Servlet.constructByFormView(models.Materiel.class, request);
-                    materiel.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-materiel");
+                    Materiel.Save(connection, request);
+                    Materiel.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("materiel.jsp").forward(request, response);
                     break;
 
                 // ----------------------- STYLE MATERIEL
                 case "crud-style-materiel":
-                    Style.setDefaultDataToView(connection, request);
-                    Materiel.setDefaultDataToView(connection, request);
                     Style_materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("style-materiel.jsp").forward(request, response);
                     break;
 
                 case "style-materiel-insert":
-                    models.Style_materiel style_materiel = Johan_Servlet
-                            .constructByFormView(models.Style_materiel.class, request);
-                    Style.InsertStyleMateriel(connection, style_materiel, request);
-                    Style.setDefaultDataToView(connection, request);
-                    Materiel.setDefaultDataToView(connection, request);
+                    Style_materiel.Save(connection, request);
                     Style_materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("style-materiel.jsp").forward(request, response);
                     break;
 
                 // ----------------------- PRODUIT
                 case "crud-produit":
-                    Categorie.setDefaultDataToView(connection, request);
                     Produit.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("produit.jsp").forward(request, response);
                     break;
 
                 case "produit-insert":
-                    models.Produit produit = Johan_Servlet.constructByFormView(models.Produit.class, request);
-                    produit.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-produit");
+                    Produit.Save(connection, request);
+                    Produit.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("produit.jsp").forward(request, response);
                     break;
 
                 // ----------------------- MEUBLE
                 case "crud-meuble":
-                    Style.setDefaultDataToView(connection, request);
-                    Volume.setDefaultDataToView(connection, request);
-                    Produit.setDefaultDataToView(connection, request);
                     Meuble.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("meuble.jsp").forward(request, response);
                     break;
 
                 case "meuble-insert":
-                    models.Meuble meuble = Johan_Servlet.constructByFormView(models.Meuble.class, request);
-                    meuble.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-reference");
+                    Meuble.Save(connection, request);
+                    Meuble.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("meuble.jsp").forward(request, response);
                     break;
 
                 // ----------------------- STYLE REFERENCE
                 case "crud-quantite-outils":
-                    Meuble.setDefaultDataToView(connection, request);
-                    Materiel.setDefaultDataToView(connection, request);
                     Quantite_outils.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("quantite-outils.jsp").forward(request, response);
                     break;
 
                 case "quantite-outils-insert":
-                    models.Quantite_outils quantite_outils = Johan_Servlet
-                            .constructByFormView(models.Quantite_outils.class, request);
-                    Quantite_outils.InsertQuantiteUtiliser(quantite_outils, connection, request);
-                    Meuble.setDefaultDataToView(connection, request);
-                    Materiel.setDefaultDataToView(connection, request);
+                    Quantite_outils.Save(connection, request);
                     Quantite_outils.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("quantite-outils.jsp").forward(request, response);
                     break;
 
-                // ----------------------- STYLE FINAL
+                // ----------------------- MODE FABRICATION
                 case "formule-materiel-request":
                     Materiel.setDefaultDataToView(connection, request);
                     V_quantite_outils.setDefaultDataToView(connection, request);
@@ -191,65 +174,57 @@ public class GeneralController extends HttpServlet {
 
                 // ----------------------- FILTRE PRIX MATERIEL
                 case "crud-prix-materiel":
-                    Materiel.setDefaultDataToView(connection, request);
-                    realmodels.Prix_materiel.setDefaultDataToView(connection, request);
+                    Prix_materiel.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("prix-materiel.jsp").forward(request, response);
                     break;
 
                 case "prix-materiel-insert":
-                    models.Prix_materiel prix_materiel = Johan_Servlet.constructByFormView(models.Prix_materiel.class,
-                            request);
-                    prix_materiel.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-prix-materiel");
+                    Prix_materiel.Save(connection, request);
+                    Prix_materiel.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("prix-materiel.jsp").forward(request, response);
                     break;
 
                 case "filtre-prix":
-                    realmodels.V_filtre_produit_by_prix v_filtre_produit_by_prix = Johan_Servlet
-                            .constructByFormView(realmodels.V_filtre_produit_by_prix.class, request);
+                    V_filtre_produit_by_prix v_filtre_produit_by_prix = Johan_Servlet
+                            .constructByFormView(realmodels.V_filtre_produit_by_prix.class, request, false);
                     v_filtre_produit_by_prix.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("filtre-prix.jsp").forward(request, response);
                     break;
 
-                // ----------------------- STOCK
-                case "crud-stock":
-                    Materiel.setDefaultDataToView(connection, request);
-                    V_full_stock_restante.setDefaultDataToView(connection, request);
-                    request.getRequestDispatcher("entrer-stock.jsp").forward(request, response);
+                // ----------------------- STOCK MATERIEL
+                case "crud-stock-materiel":
+                    V_stock_materiel_restante.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("stock-materiel.jsp").forward(request, response);
                     break;
 
-                case "stock-insert":
-                    models.Stock stock = Johan_Servlet.constructByFormView(models.Stock.class, request);
-                    stock.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-stock");
+                case "stock-materiel-insert":
+                    Stock_materiel.Save(connection, request);
+                    V_stock_materiel_restante.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("stock-materiel.jsp").forward(request, response);
                     break;
 
-                // ----------------------- FABRICATION
+                // ----------------------- FABRICATION OU STOCK MEUBLE
                 case "crud-fabrication":
                     Meuble.setDefaultDataToView(connection, request);
-                    Fabrication.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("fabrication.jsp").forward(request, response);
                     break;
 
                 case "fabrication-insert":
-                    models.Fabrication fabrication = Johan_Servlet.constructByFormView(models.Fabrication.class, request);
-                    realmodels.Fabrication.BuildReference(fabrication, connection, request);
+                    Stock_meuble.Save(connection, request);
                     Meuble.setDefaultDataToView(connection, request);
-                    Fabrication.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("fabrication.jsp").forward(request, response);
                     break;
 
                 // ----------------------- PRIX MEUBLE
                 case "crud-prix-meuble":
                     Prix_meuble.setDefaultDataToView(connection, request);
-                    Meuble.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("prix-meuble.jsp").forward(request, response);
                     break;
 
                 case "prix-meuble-insert":
-                    models.Prix_meuble prix_meuble = Johan_Servlet.constructByFormView(models.Prix_meuble.class,
-                            request);
-                    prix_meuble.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-prix-meuble");
+                    Prix_meuble.Save(connection, request);
+                    Prix_meuble.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("prix-meuble.jsp").forward(request, response);
                     break;
 
                 // ----------------------- TYPE EMPLOYE
@@ -259,34 +234,27 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "type-employee-insert":
-                    models.Type_employee type_employee = Johan_Servlet.constructByFormView(models.Type_employee.class,
-                            request);
-                    type_employee.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-type-employee");
+                    Type_employee.Save(connection, request);
+                    Type_employee.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("type-employee.jsp").forward(request, response);
                     break;
 
                 // ----------------------- MODE DE FABRICATION
                 case "crud-mode-fabrication":
-                    Meuble.setDefaultDataToView(connection, request);
-                    Type_employee.setDefaultDataToView(connection, request);
                     V_duree_fabrication.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("mode-fabrication.jsp").forward(request, response);
                     break;
 
                 case "mode-fabrication-insert":
-                    models.Mode_fabrication duree_fabrication = Johan_Servlet
-                            .constructByFormView(models.Mode_fabrication.class, request);
-                    Mode_fabrication.InsertModeFabrication(duree_fabrication, connection, request);
-                    Meuble.setDefaultDataToView(connection, request);
-                    Type_employee.setDefaultDataToView(connection, request);
+                    Mode_fabrication.Save(connection, request);
                     V_duree_fabrication.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("mode-fabrication.jsp").forward(request, response);
                     break;
 
                 // ----------------------- FILTRE BENEFICE
                 case "benefice-meuble":
-                    realmodels.V_benefice_meuble v_benefice_meuble = Johan_Servlet
-                            .constructByFormView(realmodels.V_benefice_meuble.class, request);
+                    V_benefice_meuble v_benefice_meuble = Johan_Servlet
+                            .constructByFormView(V_benefice_meuble.class, request, false);
                     v_benefice_meuble.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("intervalle-benefice.jsp").forward(request, response);
                     break;
@@ -299,7 +267,7 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "employee-insert":
-                    Employee.save(request, connection);
+                    Employee.Save(request, connection);
                     Employee.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("employee.jsp").forward(request, response);
                     break;
@@ -311,7 +279,7 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "employement-insert":
-                    Employement.save(connection, request);
+                    Employement.Save(connection, request);
                     Employement.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("employement.jsp").forward(request, response);
                     break;
@@ -323,8 +291,7 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "grade-employee-insert":
-                    models.Grade_employee grade_employee = Johan_Servlet.constructByFormView(models.Grade_employee.class, request);
-                    grade_employee.save(false, connection);
+                    Grade_employee.Save(connection, request);
                     response.sendRedirect("/Johan_S3/Controller?action=crud-grade-employee");
                     break;
                 
@@ -335,13 +302,9 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "grade-params-insert":
-                    Grade_params.save(request, connection);
+                    Grade_params.Save(request, connection);
                     request.getRequestDispatcher("grade-params.jsp").forward(request, response);
                     break;
-
-                default:
-                    throw new Exception("No action to be answered");
-
                 
                 // ----------------------- SEXE
                 case "crud-sexe":
@@ -350,9 +313,9 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "sexe-insert":
-                    models.Sexe sexe = Johan_Servlet.constructByFormView(models.Sexe.class, request);
-                    sexe.save(false, connection);
-                    response.sendRedirect("/Johan_S3/Controller?action=crud-sexe");
+                    Sexe.Save(connection, request);
+                    Sexe.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("sexe.jsp").forward(request, response);
                     break;
                 
                 // ----------------------- CLIENT
@@ -362,7 +325,7 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "client-insert":
-                    Client.save(request, connection);
+                    Client.Save(request, connection);
                     Client.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("client.jsp").forward(request, response);
                     break;
@@ -375,18 +338,27 @@ public class GeneralController extends HttpServlet {
                     break;
 
                 case "vente-insert":
-                    Vente.save(request, connection);
+                    Vente.Save(request, connection);
                     Vente.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("vente.jsp").forward(request, response);
                     break;
                 
-                // ---------------------- STATISTQUE
+                // ---------------------- STATISTQUE VENTE
                 case "statistique-vente":
                     Statistique_vente.setDefaultDataToView(connection, request);
                     request.getRequestDispatcher("statistique-vente.jsp").forward(request, response);
                     break;
-                    
 
+                // ---------------------- STATISTQUE GLOBAL
+                case "statistique-global":
+                    Statistique_global.setDefaultDataToView(connection, request);
+                    request.getRequestDispatcher("statistique-global.jsp").forward(request, response);
+                    break;
+
+
+                
+                default:
+                    throw new Exception("No action to be answered");
                     
             }
         } catch (Exception ex) {
@@ -395,6 +367,10 @@ public class GeneralController extends HttpServlet {
             // System.out.println("catch: "+action);
             // request.getRequestDispatcher(action+".jsp").forward(request, response);
         }
+    }
+
+    private void Save(Connection connection, HttpServletRequest request) {
+        // TODO
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
